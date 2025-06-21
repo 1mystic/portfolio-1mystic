@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atharv Khare - Data Scientist</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Mitr:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&family=Mitr&family=Sevillana&family=Lobster&family=Rubik+Bubbles&family=Rubik+Dirt&family=Lexend&family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+
+
+</head>
+<body>
+
+    <div class="rhombus-container">
+        <div class="rhombus">
+          <div class="rhombus-border"></div>
+          <div class="decoration"></div>
+        </div>
+      </div>
+
+      <div class="rhombus-container">
+        <div class="rhombus2">
+          <div class="rhombus-border2"></div>
+          <div class="decoration2"></div>
+        </div>
+      </div>
+    
+      <script>
+        const rhombus = document.querySelector('.rhombus');
+        //const rhombus2 = document.querySelector('.rhombus2');
+        const decoration = document.querySelector('.decoration');
+        //let rotation = 35;
+
+        
+        
+        // Create decorative dots
+        const createDots = () => {
+          const numDots = 24;
+          for (let i = 0; i < numDots; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dots';
+            const angle = (i * 360 / numDots) * (Math.PI / 180);
+            const radius = 220;
+            const x = radius * Math.cos(angle) + 92;
+            const y = radius * Math.sin(angle) + 92;
+            dot.style.left = `${x}px`;
+            dot.style.top = `${y}px`;
+            decoration.appendChild(dot);
+          }
+        }
+    
+        createDots();
+        const updateRotation = () => {
+            const scrollPosition = (window.scrollY + window.innerHeight) / 1.8;
+            const rotation = scrollPosition / 10; // Adjust the divisor to control rotation speed
+            rhombus.style.transform = `rotate(${rotation}deg)`;
+        };
+
+        // Set initial rotation
+        updateRotation();
+
+        // Handle scroll rotation
+        window.addEventListener('scroll', updateRotation);
+     /*
+        // Handle scroll rotation
+        window.addEventListener('scroll', () => {
+          const scrollPosition = window.scrollY;
+          rotation = scrollPosition / 12; // Adjust the divisor to control rotation speed
+          rhombus.style.transform = `rotate(${rotation}deg)`;
+          //rhombus2.style.transform = `rotate(${rotation}deg)`;
+        });
+ */
+       
+         // Handle scroll rotation
+        /*window.addEventListener('wheel', (e) => {
+          if (e.deltaY > 0) {
+            rotation += 5;
+          } else {
+            rotation -= 5;
+          }
+          rhombus.style.transform = `rotate(${rotation}deg)`;
+          //rhombus2.style.transform = `rotate(${rotation}deg)`
+        });*/
+       
+      </script>
+
+
+
+      
+
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+    </div>
+
+    <img src="bg1.gif" alt="background" class="background-image">
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+           
+            <div class="nav-logo">
+                <span class="logo-text">AK.</span>
+                <span class="logo-subtitle">DATA SCIENTIST</span>
+            </div>
+        
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link strip-text">HOME</a></li>
+                <li><a href="#experience" class="nav-link ">EXPERIENCE</a></li>
+                <li><a href="#projects" class="nav-link strip-text">PROJECTS</a></li>
+                <li><a href="#education" class="nav-link ">EDUCATION</a></li>
+                <li><a href="#contact" class="nav-link strip-text">CONTACT</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="grid-pattern"></div>
+            <div class="floating-particles"></div>
+        </div>
+        <div class="jungle-elements">
+            <div class="jungle-element gplant">
+                <img src="bg_images/gplant.png" alt="jungle-element">
+            </div>
+            <div class="jungle-element treen">
+            </div>
+            <div class="jungle-element wine1">
+                <img src="bg_images/wine1.png" alt="jungle-element">
+            </div>
+            <div class="jungle-element wine2">
+                <img src="bg_images/wine1.png" alt="jungle-element">
+            </div>
+            <div class="jungle-element shrub">
+                <img src="bg_images/shrub.png" alt="jungle-element">
+            </div>
+            <div class="jungle-element plant">
+                <img src="bg_images/plant.png" alt="jungle-element">
+            </div>
+        </div>  
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="title-name strip-text"> Atharv Khare</span>
+                    <span class="title-line accent">DATA</span>
+                    <span class="title-line accent strip-text">SCIENTIST</span>
+                </h1>
+                <p class="hero-description">
+                    Transforming complex data into actionable insights through machine learning, 
+                    statistical analysis, and data visualization. Passionate about solving real-world 
+                    problems with data-driven solutions.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <button class="btn btn-secondary">Download CV</button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="data-visualization">
+                    <div class="chart-container">
+                        <div class="bar-chart">
+                            <div class="bar" style="--height: 60%"></div>
+                            <div class="bar" style="--height: 80%"></div>
+                            <div class="bar" style="--height: 45%"></div>
+                            <div class="bar" style="--height: 90%"></div>
+                            <div class="bar" style="--height: 70%"></div>
+                        </div>
+                        <div class="chart-labels">
+                            <span>ML</span>
+                            <span>Stats</span>
+                            <span>Viz</span>
+                            <span>Python</span>
+                            <span>R</span>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="code-snippet">
+                    <div class="code-line">
+                        <span class="code-keyword">import</span>
+                        <span class="code-text">pandas as pd</span>
+                    </div>
+                    <div class="code-line">
+                        <span class="code-keyword">from</span>
+                        <span class="code-text">sklearn import</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+    <br>
+    <!-- Experience Section -->
+    <section id="experience" class="section experience">
+        
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="experience-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Senior Data Scientist</h3>
+                        <p class="company">TechCorp Inc.</p>
+                        <p class="duration">2022 - Present</p>
+                        <p class="description">Leading ML initiatives, developing predictive models that increased revenue by 25%</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Data Scientist</h3>
+                        <p class="company">DataFlow Solutions</p>
+                        <p class="duration">2020 - 2022</p>
+                        <p class="description">Built recommendation systems and automated data pipelines</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Junior Data Analyst</h3>
+                        <p class="company">StartupXYZ</p>
+                        <p class="duration">2019 - 2020</p>
+                        <p class="description">Performed statistical analysis and created data visualizations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section id="featured-projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="featured-grid">
+                <div class="featured-card">
+                    <div class="card-image">
+                        <div class="project-preview">
+                            <div class="code-lines">
+                                <div class="code-line"></div>
+                                <div class="code-line short"></div>
+                                <div class="code-line"></div>
+                                <div class="code-line medium"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>AI-Powered Sentiment Analysis</h3>
+                        <p>Deep learning model for real-time sentiment analysis of social media data with 94% accuracy.</p>
+                        <div class="project-tags">
+                            <span class="tag">Deep Learning</span>
+                            <span class="tag">NLP</span>
+                            <span class="tag">Python</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-link">View Project</button>
+                            <button class="btn-link">GitHub</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="featured-card">
+                    <div class="card-image">
+                        <div class="project-preview">
+                            <div class="chart-preview">
+                                <div class="mini-bars">
+                                    <div class="mini-bar"></div>
+                                    <div class="mini-bar"></div>
+                                    <div class="mini-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Customer Churn Prediction</h3>
+                        <p>Machine learning pipeline that predicts customer churn with advanced feature engineering and model optimization.</p>
+                        <div class="project-tags">
+                            <span class="tag">Machine Learning</span>
+                            <span class="tag">Scikit-learn</span>
+                            <span class="tag">Flask</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-link">View Project</button>
+                            <button class="btn-link">GitHub</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="all-projects section">
+        <div class="container">
+            <h2 class="section-title title-color-2">All Projects</h2>
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="ml">Machine Learning</button>
+                <button class="filter-btn" data-filter="viz">Visualization</button>
+                <button class="filter-btn" data-filter="web">Web Dev</button>
+                <button class="filter-btn" data-filter="analysis">Analysis</button>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card" data-category="ml">
+                    <h3>Predictive Maintenance System</h3>
+                    <p>IoT sensor data analysis for equipment failure prediction</p>
+                    <div class="project-tags">
+                        <span class="tag">TensorFlow</span>
+                        <span class="tag">IoT</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </div>
+                <div class="project-card" data-category="viz">
+                    <h3>COVID-19 Data Tracker</h3>
+                    <p>Interactive visualization of pandemic trends and statistics</p>
+                    <div class="project-tags">
+                        <span class="tag">D3.js</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </div>
+                <div class="project-card" data-category="web">
+                    <h3>ML Model API</h3>
+                    <p>RESTful API for serving machine learning models at scale</p>
+                    <div class="project-tags">
+                        <span class="tag">FastAPI</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </div>
+                <div class="project-card" data-category="analysis">
+                    <h3>Market Research Analysis</h3>
+                    <p>Statistical analysis of consumer behavior and market trends</p>
+                    <div class="project-tags">
+                        <span class="tag">R</span>
+                        <span class="tag">Statistics</span>
+                        <span class="tag">Tableau</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     
+      <!-- Education & Certificates -->
+      <section id="education" class="section education">
+        <div class="container">
+            <div class="education-grid">
+                <div class="education-section">
+                    <h2 class="section-title simple-title">Education</h2>
+                    <div class="education-item">
+                        <h3>M.S. Data Science</h3>
+                        <p class="institution">Stanford University</p>
+                        <p class="year">2019</p>
+                    </div>
+                    <div class="education-item">
+                        <h3>B.S. Computer Science</h3>
+                        <p class="institution">UC Berkeley</p>
+                        <p class="year">2017</p>
+                    </div>
+                </div>
+                <div class="certificates-section">
+                    <h2 class="section-title simple-title">Certificates</h2>
+                    <div class="cert-grid">
+                        <div class="cert-item">
+                            <div class="cert-icon">🏆</div>
+                            <p>AWS Certified ML Specialist</p>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-icon">📜</div>
+                            <p>Google Cloud Professional</p>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-icon">🎯</div>
+                            <p>TensorFlow Developer</p>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-icon">⭐</div>
+                            <p>Tableau Desktop Specialist</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Journey -->
+    <section id="journey" class="section journey">
+        <div class="container">
+            <h2 class="section-title">My Journey</h2>
+            <div class="journey-content">
+                <div class="journey-text">
+                    <p>My path into data science began with a fascination for patterns hidden in everyday data. From analyzing sports statistics as a hobby to building enterprise-level ML systems, I've always been driven by the potential to uncover insights that drive meaningful change.</p>
+                    <p>Today, I specialize in bridging the gap between complex algorithms and business value, ensuring that data science initiatives translate into real-world impact.</p>
+                </div>
+                <div class="journey-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">25%</div>
+                        <div class="stat-label">Avg. ROI Increase</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work & Blogs -->
+    <section id="work-blogs" class="section">
+        <div class="container">
+            <h2 class="section-title title-color-2">Work & Blogs</h2>
+            <div class="blogs-grid">
+                <article class="blog-card featured">
+                    <div class="blog-image">
+                        <div class="blog-category">Featured</div>
+                    </div>
+                    <div class="blog-content">
+                        <h3>The Future of Explainable AI in Healthcare</h3>
+                        <p>Exploring how interpretable machine learning models can improve trust and adoption in medical diagnosis applications.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Dec 15, 2023</span>
+                            <span class="read-time">8 min read</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <div class="blog-content">
+                        <h3>Building Production-Ready ML Pipelines</h3>
+                        <p>A comprehensive guide to deploying machine learning models with proper monitoring and maintenance.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Nov 28, 2023</span>
+                            <span class="read-time">12 min read</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <div class="blog-content">
+                        <h3>Data Visualization Best Practices</h3>
+                        <p>Tips and techniques for creating compelling and effective data visualizations that tell a story.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">Oct 22, 2023</span>
+                            <span class="read-time">6 min read</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p>I'm always interested in discussing new opportunities, collaborations, or just chatting about data science and technology.</p>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="contact-icon">📧</div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>atharvkhare18@email.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="contact-icon">💼</div>
+                            <div>
+                                <h4>LinkedIn</h4>
+                                <p>linkedin.com/in/atharv-khare-a10456274/</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="contact-icon">🐙</div>
+                            <div>
+                                <h4>GitHub</h4>
+                                <p>github.com/1mystic</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2024 Atharv Khare. All rights reserved.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
