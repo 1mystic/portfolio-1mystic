@@ -4,58 +4,48 @@ const navLinks = document.querySelectorAll('.nav-link');
 
 // Loader
 setTimeout(() => {
-    document.querySelector('.loader-container').style.display = 'none';
+    const loaderContainer = document.querySelector('.loader-container');
+    const loader = document.querySelector('.loader');
+    
+    // Add fade-out classes
+    loaderContainer.classList.add('fade-out');
+    loader.classList.add('fade-out');
+    
+    // Remove elements after animation completes
+    setTimeout(() => {
+        loaderContainer.style.display = 'none';
+    }, 500);
 }, 1000);
-
 
 // Enhanced audio autoplay with multiple strategies
 document.addEventListener('DOMContentLoaded', function() {
     const bgMusic = document.getElementById('bg-music');
     bgMusic.volume = 0.05;
-    
-    // Strategy 1: Try immediate autoplay
-    const playPromise = bgMusic.play();
-    
-    if (playPromise !== undefined) {
-        playPromise.then(() => {
-            console.log('Audio autoplay successful');
-        }).catch(error => {
-            console.log('Autoplay prevented:', error);
-            
-            // Strategy 2: Try autoplay on first user interaction
-            const startAudio = () => {
-                bgMusic.play().then(() => {
-                    console.log('Audio started on user interaction');
-                    // Remove listeners after successful play
-                    document.removeEventListener('click', startAudio);
-                    document.removeEventListener('keydown', startAudio);
-                    document.removeEventListener('touchstart', startAudio);
-                }).catch(err => {
-                    console.log('Play failed:', err);
-                });
-            };
-            
-            // Add multiple event listeners for better coverage
-            document.addEventListener('click', startAudio, { once: true });
-            document.addEventListener('keydown', startAudio, { once: true });
-            document.addEventListener('touchstart', startAudio, { once: true });
-            
-            // Strategy 3: Try autoplay after a short delay (some browsers allow this)
-            setTimeout(() => {
-                bgMusic.play().catch(() => {
-                    console.log('Delayed autoplay also failed');
-                });
-            }, 1000);
-        });
+
+    // Auto-click home nav link to trigger music
+    const homeLink = document.querySelector('.nav-link[href="#home"]');
+    if (homeLink) {
+        homeLink.click();
     }
+    
+    // Try autoplay multiple times with increasing delays
+    const tryAutoplay = (attempts = 0) => {
+        if (attempts >= 5) {
+            console.log('Autoplay failed after 5 attempts');
+            return;
+        }
+        
+        bgMusic.play().then(() => {
+            console.log('Audio autoplay successful on attempt', attempts + 1);
+        }).catch(() => {
+            console.log('Autoplay attempt', attempts + 1, 'failed');
+            setTimeout(() => tryAutoplay(attempts + 1), 2000);
+        });
+    };
+    
+    tryAutoplay();
 });
 
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-    });
-});
 
 // Smooth scrolling and active nav link
 const sections = document.querySelectorAll('section');
@@ -104,6 +94,7 @@ const observerOptions = {
     rootMargin: '0px 0px -50px 0px'
 };
 
+
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -111,6 +102,12 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 }, observerOptions);
+
+// Observe all section elements
+const animateSections = document.querySelectorAll('.section');
+animateSections.forEach(section => {
+    observer.observe(section);
+});
 
 // Navbar background on scroll
 window.addEventListener('scroll', () => {
