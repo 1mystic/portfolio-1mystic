@@ -1,158 +1,53 @@
-// Mobile Navigation
-const navMenu = document.querySelector('.nav-menu');
-const navLinks = document.querySelectorAll('.nav-link');
 
 // Loader
 setTimeout(() => {
     const loaderContainer = document.querySelector('.loader-container');
     const loader = document.querySelector('.loader');
     
-    // Add fade-out classes
-    loaderContainer.classList.add('fade-out');
-    loader.classList.add('fade-out');
-    
-    // Remove elements after animation completes
-    setTimeout(() => {
-        loaderContainer.style.display = 'none';
-    }, 500);
+    if (loaderContainer && loader) {
+        // Add fade-out classes
+        loaderContainer.classList.add('fade-out');
+        loader.classList.add('fade-out');
+        
+        // Remove elements after animation completes
+        setTimeout(() => {
+            loaderContainer.style.display = 'none';
+        }, 500);
+    }
 }, 1000);
 
 // Enhanced audio autoplay with multiple strategies
 document.addEventListener('DOMContentLoaded', function() {
     const bgMusic = document.getElementById('bg-music');
-    bgMusic.volume = 0.05;
-
-    // Auto-click home nav link to trigger music
-    const homeLink = document.querySelector('.nav-link[href="#home"]');
-    if (homeLink) {
-        homeLink.click();
-    }
     
-    // Try autoplay multiple times with increasing delays
-    const tryAutoplay = (attempts = 0) => {
-        if (attempts >= 5) {
-            console.log('Autoplay failed after 5 attempts');
-            return;
+    if (bgMusic) {
+        bgMusic.volume = 0.05;
+
+        // Auto-click home nav link to trigger music
+        const homeLink = document.querySelector('.nav-link[href="#home"]');
+        if (homeLink) {
+            homeLink.click();
         }
         
-        bgMusic.play().then(() => {
-            console.log('Audio autoplay successful on attempt', attempts + 1);
-        }).catch(() => {
-            console.log('Autoplay attempt', attempts + 1, 'failed');
-            setTimeout(() => tryAutoplay(attempts + 1), 2000);
-        });
-    };
-    
-    tryAutoplay();
-});
-
-
-// Smooth scrolling and active nav link
-const sections = document.querySelectorAll('section');
-const navItems = document.querySelectorAll('.nav-link');
-
-function changeActiveNav() {
-    let index = sections.length;
-
-    while(--index && window.scrollY + 200 < sections[index].offsetTop) {}
-    
-    navItems.forEach((link) => link.classList.remove('active'));
-    if (navItems[index]) {
-        navItems[index].classList.add('active');
-    }
-}
-
-window.addEventListener('scroll', changeActiveNav);
-
-// Project filtering functionality
-const filterButtons = document.querySelectorAll('.filter-btn');
-const projectCards = document.querySelectorAll('.project-card');
-
-filterButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        const filter = this.getAttribute('data-filter');
-        
-        // Update active filter button
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        this.classList.add('active');
-        
-        // Filter project cards
-        projectCards.forEach(card => {
-            if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                card.style.display = 'block';
-                card.style.animation = 'fadeInUp 0.5s ease-out';
-            } else {
-                card.style.display = 'none';
+        // Try autoplay multiple times with increasing delays
+        const tryAutoplay = (attempts = 0) => {
+            if (attempts >= 5) {
+                console.log('Autoplay failed after 5 attempts');
+                return;
             }
-        });
-    });
-});
-
-// Scroll animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, observerOptions);
-
-// Observe all section elements
-const animateSections = document.querySelectorAll('.section');
-animateSections.forEach(section => {
-    observer.observe(section);
-});
-
-// Navbar background on scroll
-window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(10, 10, 10, 0.95)';
-    } else {
-        navbar.style.background = 'rgba(10, 10, 10, 0.9)';
+            
+            bgMusic.play().then(() => {
+                console.log('Audio autoplay successful on attempt', attempts + 1);
+            }).catch(() => {
+                console.log('Autoplay attempt', attempts + 1, 'failed');
+                setTimeout(() => tryAutoplay(attempts + 1), 2000);
+            });
+        };
+        
+        tryAutoplay();
     }
-});
 
-// Contact form handling
-const contactForm = document.querySelector('.contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(contactForm);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const message = formData.get('message');
-        
-        // Simple validation
-        if (!name || !email || !message) {
-            alert('Please fill in all fields');
-            return;
-        }
-        
-        // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            alert('Please enter a valid email address');
-            return;
-        }
-        
-        // Show success message (in a real app, you'd send this to a server)
-        alert('Thank you for your message! I\'ll get back to you soon.');
-        contactForm.reset();
-    });
-}
-
-// Enhanced hero section animations
-document.addEventListener('DOMContentLoaded', () => {
-    // Animate hero elements
+    // Enhanced hero section animations
     const heroTitle = document.querySelector('.hero-title');
     const heroDescription = document.querySelector('.hero-description');
     const heroButtons = document.querySelector('.hero-buttons');
@@ -201,7 +96,186 @@ document.addEventListener('DOMContentLoaded', () => {
             heroVisual.style.transform = 'scale(1)';
         }, 800);
     }
+
+    // Initialize typing effect
+    if (heroDescription) {
+        const originalText = heroDescription.textContent;
+        setTimeout(() => {
+            typeWriter(heroDescription, originalText, 50);
+        }, 1000);
+    }
+
+    // Skills animation in data visualization
+    const bars = document.querySelectorAll('.bar');
+    bars.forEach((bar, index) => {
+        setTimeout(() => {
+            bar.style.animationDelay = `${index * 0.2}s`;
+        }, 1000);
+    });
+
+    // Enhanced button interactions
+    const buttons = document.querySelectorAll('.btn, .btn-link');
+    
+    buttons.forEach(button => {
+        button.addEventListener('mouseenter', () => {
+            button.style.transform = 'translateY(-2px)';
+        });
+        
+        button.addEventListener('mouseleave', () => {
+            button.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Blog card interactions
+    const blogCards = document.querySelectorAll('.blog-card');
+    
+    blogCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.cursor = 'pointer';
+        });
+        
+        card.addEventListener('click', () => {
+            // In a real app, you'd navigate to the blog post
+            console.log('Navigate to blog post');
+        });
+    });
+
+    // Project card interactions
+    const projectCards = document.querySelectorAll('.project-card, .featured-card');
+    
+    projectCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-5px)';
+            card.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.3)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+            card.style.boxShadow = 'none';
+        });
+    });
+
+    // Initialize floating particles
+    createFloatingParticles();
 });
+
+// Smooth scrolling and active nav link
+const sections = document.querySelectorAll('section');
+const navItems = document.querySelectorAll('.nav-link');
+
+function changeActiveNav() {
+    const scrollPosition = window.scrollY + window.innerHeight / 3; // Use 1/3 of viewport height
+    
+    let currentSection = '';
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + section.offsetHeight;
+        
+        // Check if scroll position is within this section's bounds
+        if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
+            currentSection = section.getAttribute('id');
+        }
+    });
+    
+    // Update active nav link
+    navItems.forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href');
+        if (href === `#${currentSection}`) {
+            link.classList.add('active');
+        }
+    });
+}
+
+window.addEventListener('scroll', changeActiveNav);
+
+// Project filtering functionality
+const filterButtons = document.querySelectorAll('.filter-btn');
+const projectCards = document.querySelectorAll('.project-card');
+
+filterButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        const filter = this.getAttribute('data-filter');
+        
+        // Update active filter button
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Filter project cards
+        projectCards.forEach(card => {
+            if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                card.style.display = 'block';
+                card.style.animation = 'fadeInUp 0.5s ease-out';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+});
+
+// Scroll animations
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, observerOptions);
+
+// Observe all section elements
+const animateSections = document.querySelectorAll('.section');
+animateSections.forEach(section => {
+    observer.observe(section);
+});
+
+// Navbar background on scroll
+window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        if (window.scrollY > 100) {
+            navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+        } else {
+            navbar.style.background = 'rgba(10, 10, 10, 0.9)';
+        }
+    }
+});
+
+// Contact form handling
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(contactForm);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const message = formData.get('message');
+        
+        // Simple validation
+        if (!name || !email || !message) {
+            alert('Please fill in all fields');
+            return;
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address');
+            return;
+        }
+        
+        // Show success message (in a real app, you'd send this to a server)
+        alert('Thank you for your message! I\'ll get back to you soon.');
+        contactForm.reset();
+    });
+}
 
 // Floating particles animation
 function createFloatingParticles() {
@@ -249,9 +323,6 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Initialize floating particles
-document.addEventListener('DOMContentLoaded', createFloatingParticles);
-
 // Typing effect for hero subtitle
 function typeWriter(element, text, speed = 100) {
     let i = 0;
@@ -268,27 +339,6 @@ function typeWriter(element, text, speed = 100) {
     type();
 }
 
-// Initialize typing effect
-document.addEventListener('DOMContentLoaded', () => {
-    const heroSubtitle = document.querySelector('.hero-description');
-    if (heroSubtitle) {
-        const originalText = heroSubtitle.textContent;
-        setTimeout(() => {
-            typeWriter(heroSubtitle, originalText, 50);
-        }, 1000);
-    }
-});
-
-// Skills animation in data visualization
-document.addEventListener('DOMContentLoaded', () => {
-    const bars = document.querySelectorAll('.bar');
-    bars.forEach((bar, index) => {
-        setTimeout(() => {
-            bar.style.animationDelay = `${index * 0.2}s`;
-        }, 1000);
-    });
-});
-
 // Smooth reveal on scroll
 function revealOnScroll() {
     const reveals = document.querySelectorAll('.fade-in:not(.visible)');
@@ -304,54 +354,6 @@ function revealOnScroll() {
 }
 
 window.addEventListener('scroll', revealOnScroll);
-
-// Enhanced button interactions
-document.addEventListener('DOMContentLoaded', () => {
-    const buttons = document.querySelectorAll('.btn, .btn-link');
-    
-    buttons.forEach(button => {
-        button.addEventListener('mouseenter', () => {
-            button.style.transform = 'translateY(-2px)';
-        });
-        
-        button.addEventListener('mouseleave', () => {
-            button.style.transform = 'translateY(0)';
-        });
-    });
-});
-
-// Blog card interactions
-document.addEventListener('DOMContentLoaded', () => {
-    const blogCards = document.querySelectorAll('.blog-card');
-    
-    blogCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.style.cursor = 'pointer';
-        });
-        
-        card.addEventListener('click', () => {
-            // In a real app, you'd navigate to the blog post
-            console.log('Navigate to blog post');
-        });
-    });
-});
-
-// Project card interactions
-document.addEventListener('DOMContentLoaded', () => {
-    const projectCards = document.querySelectorAll('.project-card, .featured-card');
-    
-    projectCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-5px)';
-            card.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.3)';
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0)';
-            card.style.boxShadow = 'none';
-        });
-    });
-});
 
 // Performance optimization: Debounce scroll events
 function debounce(func, wait, immediate) {

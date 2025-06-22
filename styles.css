@@ -981,8 +981,16 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  animation: fluidSlideInLeft 2s ease-in-out;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 .section-title {
   font-family: 'Syne', sans-serif;
@@ -1667,6 +1675,14 @@ p {
 }
 
 @media (max-width: 768px) {
+
+  .music-animation{
+    height: 50px;
+    width: 50px;
+    right: 2rem;
+    bottom: 2rem;
+  }
+
   /* Hero section adjustments */
   .hero-content {
     flex-direction: column;
