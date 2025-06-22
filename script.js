@@ -2,6 +2,53 @@
 const navMenu = document.querySelector('.nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
 
+// Loader
+setTimeout(() => {
+    document.querySelector('.loader-container').style.display = 'none';
+}, 1000);
+
+
+// Enhanced audio autoplay with multiple strategies
+document.addEventListener('DOMContentLoaded', function() {
+    const bgMusic = document.getElementById('bg-music');
+    bgMusic.volume = 0.05;
+    
+    // Strategy 1: Try immediate autoplay
+    const playPromise = bgMusic.play();
+    
+    if (playPromise !== undefined) {
+        playPromise.then(() => {
+            console.log('Audio autoplay successful');
+        }).catch(error => {
+            console.log('Autoplay prevented:', error);
+            
+            // Strategy 2: Try autoplay on first user interaction
+            const startAudio = () => {
+                bgMusic.play().then(() => {
+                    console.log('Audio started on user interaction');
+                    // Remove listeners after successful play
+                    document.removeEventListener('click', startAudio);
+                    document.removeEventListener('keydown', startAudio);
+                    document.removeEventListener('touchstart', startAudio);
+                }).catch(err => {
+                    console.log('Play failed:', err);
+                });
+            };
+            
+            // Add multiple event listeners for better coverage
+            document.addEventListener('click', startAudio, { once: true });
+            document.addEventListener('keydown', startAudio, { once: true });
+            document.addEventListener('touchstart', startAudio, { once: true });
+            
+            // Strategy 3: Try autoplay after a short delay (some browsers allow this)
+            setTimeout(() => {
+                bgMusic.play().catch(() => {
+                    console.log('Delayed autoplay also failed');
+                });
+            }, 1000);
+        });
+    }
+});
 
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
@@ -64,19 +111,6 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 }, observerOptions);
-
-// Observe elements for animation
-document.addEventListener('DOMContentLoaded', () => {
-    const animatedElements = document.querySelectorAll(
-        '.timeline-item, .featured-card, .project-card, .certificate-card, .education-card, .journey-item, .blog-card'
-    );
-    
-    animatedElements.forEach((el, index) => {
-        el.classList.add('fade-in');
-        el.style.transitionDelay = `${index * 0.1}s`;
-        observer.observe(el);
-    });
-});
 
 // Navbar background on scroll
 window.addEventListener('scroll', () => {
