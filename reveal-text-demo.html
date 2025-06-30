@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reveal Text Animation Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Mitr:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Mitr', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .demo-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+            margin: 2rem auto;
+        }
+
+        .demo-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .animation-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            background: #fafafa;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        /* Reveal Text Animation Styles */
+        .reveal-text-container {
+            margin: 2rem 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .reveal-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .reveal-text-line {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #333;
+            opacity: 0;
+            transform: translateY(100%);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal-text-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+            transform: translateX(-100%);
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal-text-line.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-text-line.revealed::before {
+            transform: translateX(100%);
+        }
+
+        .reveal-text-line:nth-child(1) { transition-delay: 0.1s; }
+        .reveal-text-line:nth-child(2) { transition-delay: 0.3s; }
+        .reveal-text-line:nth-child(3) { transition-delay: 0.5s; }
+        .reveal-text-line:nth-child(4) { transition-delay: 0.7s; }
+
+        /* Slide reveal effect */
+        .reveal-text-slide {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #333;
+            opacity: 0;
+            transform: translateX(-100%);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal-text-slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: #fafafa;
+            transform: translateX(0);
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal-text-slide.revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-text-slide.revealed::after {
+            transform: translateX(100%);
+        }
+
+        /* Scale reveal effect */
+        .reveal-text-scale {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #333;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .reveal-text-scale.revealed {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Typewriter effect */
+        .reveal-text-typewriter {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #333;
+            overflow: hidden;
+            border-right: 3px solid #667eea;
+            white-space: nowrap;
+            margin: 0 auto;
+            display: inline-block;
+        }
+
+        .typewriter-animation {
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #667eea; }
+        }
+
+        .demo-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 1rem;
+        }
+
+        .demo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .demo-button:active {
+            transform: translateY(0);
+        }
+
+        /* Scroll Demo Specific Styles */
+        .scroll-demo-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            background: #fafafa;
+            min-height: 400px;
+        }
+
+        .scroll-spacer {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 2rem 0;
+            border-radius: 15px;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: #333;
+            z-index: 1000;
+        }
+
+        .scroll-progress {
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+
+        .scroll-progress-bar {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .demo-container {
+                padding: 2rem;
+                margin: 1rem auto;
+            }
+            
+            .demo-title {
+                font-size: 2rem;
+            }
+            
+            .reveal-text-line,
+            .reveal-text-slide,
+            .reveal-text-scale,
+            .reveal-text-typewriter {
+                font-size: 1.5rem;
+            }
+
+            .scroll-spacer {
+                height: 60vh;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator">
+        <div>Scroll Progress</div>
+        <div class="scroll-progress">
+            <div class="scroll-progress-bar" id="scrollProgress"></div>
+        </div>
+    </div>
+
+    <div class="demo-container">
+        <h1 class="demo-title">Reveal Text Animation Demo</h1>
+        
+        <div class="animation-section">
+            <h2 class="section-title">Slide Up Reveal</h2>
+            <div class="reveal-text-container">
+                <div class="reveal-text">
+                    <div class="reveal-text-line">Welcome to the future</div>
+                    <div class="reveal-text-line">Where creativity meets</div>
+                    <div class="reveal-text-line">Technology and innovation</div>
+                    <div class="reveal-text-line">Creates amazing experiences</div>
+                </div>
+            </div>
+            <button class="demo-button" onclick="triggerReveal('.reveal-text-line')">Trigger Animation</button>
+        </div>
+
+        <div class="animation-section">
+            <h2 class="section-title">Slide In Reveal</h2>
+            <div class="reveal-text-container">
+                <div class="reveal-text-slide">This text slides in from the left</div>
+            </div>
+            <button class="demo-button" onclick="triggerReveal('.reveal-text-slide')">Trigger Animation</button>
+        </div>
+
+        <div class="animation-section">
+            <h2 class="section-title">Scale Reveal</h2>
+            <div class="reveal-text-container">
+                <div class="reveal-text-scale">This text scales up with a bounce effect</div>
+            </div>
+            <button class="demo-button" onclick="triggerReveal('.reveal-text-scale')">Trigger Animation</button>
+        </div>
+
+        <div class="animation-section">
+            <h2 class="section-title">Typewriter Effect</h2>
+            <div class="reveal-text-container">
+                <div class="reveal-text-typewriter" id="typewriter">This text types out character by character</div>
+            </div>
+            <button class="demo-button" onclick="triggerTypewriter()">Trigger Animation</button>
+        </div>
+
+        <!-- Scroll Demo Section -->
+        <div class="scroll-spacer">
+            Scroll down to see the scroll-triggered animations
+        </div>
+
+        <div class="scroll-demo-section">
+            <h2 class="section-title">Scroll Triggered Animation</h2>
+            <div class="reveal-text-container">
+                <div class="reveal-text-line scroll-trigger">This animation triggers on scroll</div>
+                <div class="reveal-text-line scroll-trigger">Perfect for web pages</div>
+                <div class="reveal-text-line scroll-trigger">And interactive content</div>
+            </div>
+            <p style="margin-top: 2rem; color: #666;">
+                Scroll up and down to see the animations trigger and reset
+            </p>
+        </div>
+
+        <div class="scroll-spacer">
+            More scroll space to test the animations
+        </div>
+
+        <div class="scroll-demo-section">
+            <h2 class="section-title">Another Scroll Section</h2>
+            <div class="reveal-text-container">
+                <div class="reveal-text-slide scroll-trigger">This slide animation also triggers on scroll</div>
+                <div class="reveal-text-scale scroll-trigger">And this scale animation too!</div>
+            </div>
+        </div>
+
+        <div class="scroll-spacer">
+            End of demo - scroll back up to see animations again
+        </div>
+    </div>
+
+    <script>
+        // Initialize animations on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Auto-trigger initial animations
+            setTimeout(() => {
+                triggerReveal('.reveal-text-line');
+            }, 500);
+
+            // Initialize scroll observer
+            initScrollObserver();
+            
+            // Initialize scroll progress indicator
+            initScrollProgress();
+        });
+
+        // Function to trigger reveal animations
+        function triggerReveal(selector) {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach((element, index) => {
+                setTimeout(() => {
+                    element.classList.add('revealed');
+                }, index * 200);
+            });
+        }
+
+        // Function to reset animations
+        function resetAnimations(selector) {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(element => {
+                element.classList.remove('revealed');
+            });
+        }
+
+        // Typewriter effect
+        function triggerTypewriter() {
+            const element = document.getElementById('typewriter');
+            const text = element.textContent;
+            element.textContent = '';
+            element.classList.add('typewriter-animation');
+            
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, 100);
+                }
+            }
+            type();
+        }
+
+        // Enhanced scroll observer for scroll-triggered animations
+        function initScrollObserver() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add revealed class with staggered delay for multiple elements
+                        const elements = entry.target.parentElement.querySelectorAll('.scroll-trigger');
+                        elements.forEach((element, index) => {
+                            setTimeout(() => {
+                                element.classList.add('revealed');
+                            }, index * 200);
+                        });
+                    } else {
+                        // Remove revealed class when element is out of view
+                        const elements = entry.target.parentElement.querySelectorAll('.scroll-trigger');
+                        elements.forEach(element => {
+                            element.classList.remove('revealed');
+                        });
+                    }
+                });
+            }, {
+                threshold: 0.3,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // Observe each scroll demo section
+            const scrollSections = document.querySelectorAll('.scroll-demo-section');
+            scrollSections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+
+        // Scroll progress indicator
+        function initScrollProgress() {
+            const progressBar = document.getElementById('scrollProgress');
+            
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset;
+                const docHeight = document.body.offsetHeight - window.innerHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+                
+                progressBar.style.width = scrollPercent + '%';
+            });
+        }
+
+        // Add smooth scrolling behavior
+        document.documentElement.style.scrollBehavior = 'smooth';
+    </script>
+</body>
+</html> 

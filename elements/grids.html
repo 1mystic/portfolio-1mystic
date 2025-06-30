@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feature Grid Component</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #111111 100%);
+            border: 1px solid #2a2a2a;
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            border-color: #00d4aa;
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 212, 170, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .icon {
+            width: 48px;
+            height: 48px;
+            background: #00d4aa;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .card-description {
+            color: #888888;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            font-size: 16px;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .features li {
+            color: #cccccc;
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 24px;
+            font-size: 14px;
+        }
+
+        .features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00d4aa;
+            font-weight: bold;
+        }
+
+        .auth-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .form-input {
+            background: #1a1a1a;
+            border: 1px solid #333333;
+            border-radius: 8px;
+            padding: 12px;
+            color: #888888;
+            font-size: 14px;
+        }
+
+        .form-button {
+            background: #00d4aa;
+            color: #000000;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .form-button:hover {
+            background: #00b894;
+        }
+
+        .storage-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin: 16px 0;
+        }
+
+        .storage-item {
+            aspect-ratio: 1;
+            background: #2a2a2a;
+            border-radius: 8px;
+            border: 1px solid #333333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .storage-item:hover {
+            background: #333333;
+            border-color: #00d4aa;
+        }
+
+        .realtime-users {
+            display: flex;
+            gap: 12px;
+            margin: 16px 0;
+            align-items: center;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            color: #000000;
+        }
+
+        .user-1 { background: #00d4aa; }
+        .user-2 { background: #00b894; }
+
+        .vector-cube {
+            width: 120px;
+            height: 120px;
+            margin: 16px auto;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border: 2px solid #00d4aa;
+            background: rgba(0, 212, 170, 0.1);
+        }
+
+        .cube-front { transform: rotateY(0deg) translateZ(60px); }
+        .cube-back { transform: rotateY(180deg) translateZ(60px); }
+        .cube-right { transform: rotateY(90deg) translateZ(60px); }
+        .cube-left { transform: rotateY(-90deg) translateZ(60px); }
+        .cube-top { transform: rotateX(90deg) translateZ(60px); }
+        .cube-bottom { transform: rotateX(-90deg) translateZ(60px); }
+
+        .vector-points {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #00d4aa;
+            border-radius: 50%;
+        }
+
+        .point-1 { top: 20px; left: 20px; }
+        .point-2 { top: 20px; right: 20px; }
+        .point-3 { bottom: 20px; left: 30px; }
+        .point-4 { top: 50px; left: 60px; }
+        .point-5 { bottom: 40px; right: 25px; }
+
+        .providers {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            margin-top: 16px;
+        }
+
+        .provider {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #888888;
+            font-size: 14px;
+        }
+
+        .provider-icon {
+            width: 24px;
+            height: 24px;
+            background: #333333;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card.large {
+            grid-column: span 2;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .card.large {
+                grid-column: span 1;
+            }
+            .auth-form {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .animate-cube {
+            animation: rotateCube 10s infinite linear;
+        }
+
+        @keyframes rotateCube {
+            0% { transform: rotateX(0deg) rotateY(0deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg); }
+        }
+
+        .glow-effect {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            right: -50%;
+            bottom: -50%;
+            background: radial-gradient(circle, rgba(0, 212, 170, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover .glow-effect {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="grid">
+            <!-- Database Card -->
+            <div class="card">
+                <div class="glow-effect"></div>
+                <div class="card-header">
+                    <div class="icon">🗄️</div>
+                    <h3 class="card-title">Database</h3>
+                </div>
+                <p class="card-description">
+                    Every project is a full Postgres database, the world's most trusted relational database.
+                </p>
+                <ul class="features">
+                    <li>100% portable</li>
+                    <li>Built-in Auth with RLS</li>
+                    <li>Easy to extend</li>
+                </ul>
+            </div>
+
+            <!-- Authentication Card -->
+            <div class="card">
+                <div class="glow-effect"></div>
+                <div class="card-header">
+                    <div class="icon">🔐</div>
+                    <h3 class="card-title">Authentication</h3>
+                </div>
+                <p class="card-description">
+                    Add user sign ups and logins, securing your data with Row Level Security.
+                </p>
+                <div class="auth-form">
+                    <input type="email" class="form-input" placeholder="you@gmail.com" value="you@gmail.com">
+                    <input type="password" class="form-input" placeholder="alex140198" value="alex140198">
+                    <button class="form-button">Access required</button>
+                    <button class="form-button">Access required</button>
+                    <input type="email" class="form-input" placeholder="ceo@gmail.com" value="ceo@gmail.com">
+                    <input type="password" class="form-input" placeholder="newmaster" value="newmaster">
+                </div>
+            </div>
+
+            <!-- Edge Functions Card -->
+            <div class="card">
+                <div class="glow-effect"></div>
+                <div class="card-header">
+                    <div class="icon">⚡</div>
+                    <h3 class="card-title">Edge Functions</h3>
+                </div>
+                <p class="card-description">
+                    Easily write custom code without deploying or scaling servers.
+                </p>
+                <div class="vector-cube animate-cube">
+                    <div class="cube-face cube-front"></div>
+                    <div class="cube-face cube-back"></div>
+                    <div class="cube-face cube-right"></div>
+                    <div class="cube-face cube-left"></div>
+                    <div class="cube-face cube-top"></div>
+                    <div class="cube-face cube-bottom"></div>
+                </div>
+            </div>
+
+            <!-- Storage Card -->
+            <div class="card">
+                <div class="glow-effect"></div>
+                <div class="card-header">
+                    <div class="icon">💾</div>
+                    <h3 class="card-title">Storage</h3>
+                </div>
+                <p class="card-description">
+                    Store, organize, and serve large files, from videos to images.
+                </p>
+                <div class="storage-grid">
+                    <div class="storage-item">🖼️</div>
+                    <div class="storage-item">🖼️</div>
+                    <div class="storage-item">🖼️</div>
+                    <div class="storage-item">🖼️</div>
+                    <div class="storage-item">🖼️</div>
+                    <div class="storage-item">📄</div>
+                    <div class="storage-item">📄</div>
+                    <div class="storage-item">📄</div>
+                    <div class="storage-item">📄</div>
+                    <div class="storage-item">📄</div>
+                    <div class="storage-item">🎥</div>
+                    <div class="storage-item">🎥</div>
+                    <div class="storage-item">🎥</div>
+                    <div class="storage-item">🎥</div>
+                    <div class="storage-item">🎥</div>
+                </div>
+            </div>
+
+            <!-- Realtime Card -->
+            <div class="card">
+                <div class="glow-effect"></div>
+                <div class="card-header">
+                    <div class="icon">🔄</div>
+                    <h3 class="card-title">Realtime</h3>
+                </div>
+                <p class="card-description">
+                    Build multiplayer experiences with realtime data synchronization.
+                </p>
+                <div class="realtime-users">
+                    <div class="user-avatar user-1">JW</div>
+                    <div style="flex: 1; height: 2px; background: linear-gradient(90deg, #00d4aa 0%, transparent 100%);"></div>
+                    <div class="user-avatar user-2">TM</div>
+                </div>
+            </div>
+
+            <!-- Vector Card -->
+            <div class="card">
+                <div class="glow-effect"></div>
+                <div class="card-header">
+                    <div class="icon">🧠</div>
+                    <h3 class="card-title">Vector</h3>
+                </div>
+                <p class="card-description">
+                    Integrate your favorite ML models to store, index and search vector embeddings.
+                </p>
+                <div style="position: relative; height: 120px; margin: 16px 0;">
+                    <div class="vector-points point-1"></div>
+                    <div class="vector-points point-2"></div>
+                    <div class="vector-points point-3"></div>
+                    <div class="vector-points point-4"></div>
+                    <div class="vector-points point-5"></div>
+                </div>
+                <div class="providers">
+                    <div class="provider">
+                        <div class="provider-icon">🤖</div>
+                        <span>OpenAI</span>
+                    </div>
+                    <div class="provider">
+                        <div class="provider-icon">🤗</div>
+                        <span>Hugging Face</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add interactive hover effects
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Animate storage items on hover
+        document.querySelectorAll('.storage-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1) rotate(5deg)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+
+        // Add pulsing effect to vector points
+        function animateVectorPoints() {
+            const points = document.querySelectorAll('.vector-points');
+            points.forEach((point, index) => {
+                setTimeout(() => {
+                    point.style.animation = 'pulse 2s infinite';
+                }, index * 200);
+            });
+        }
+
+        // CSS for pulse animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0%, 100% { transform: scale(1); opacity: 1; }
+                50% { transform: scale(1.5); opacity: 0.7; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Start animations
+        animateVectorPoints();
+
+        // Add click interactions
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('.card-title').textContent;
+                console.log(`Clicked on ${title} card`);
+                // Add your click handling logic here
+            });
+        });
+    </script>
+</body>
+</html>

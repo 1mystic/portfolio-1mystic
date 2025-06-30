@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack Sorted Button</title>
+    <style>
+        .btn {
+            background: #fffcd5;
+            box-shadow: 4px 4px #ffe00b, 9px 9px #151515;
+            color: #151515;
+            text-transform: lowercase;
+            border: solid 2px #151515;
+            text-decoration: none;
+            padding: 18px 32px;
+            display: inline-flex;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            transition: 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+            cursor: pointer;
+            overflow: hidden;
+            transition-delay: 0s !important;
+            text-transform: uppercase !important;
+            letter-spacing: 1.5px;
+            font-family: sans-serif;
+        }
+        .btn::before {
+            position: absolute;
+            content: "";
+            top: 0;
+            right: 0;
+            width: 0%;
+            height: 100%;
+            background: #151515;
+            z-index: -1;
+            transition: 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        }
+        .btn:hover::before {
+            width: 100%;
+            left: 0;
+            right: unset;
+        }
+        .btn:hover {
+            box-shadow: 0 0 #ffe00b, 0 0 #151515;
+            color: white;
+        }
+        body {
+            background: #ffe00b;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+            font-family: sans-serif;
+        }
+        div {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Hover</h1>
+        <a href="#" class="btn">
+            Stack Sorted
+        </a>
+    </div>
+</body>
+</html>

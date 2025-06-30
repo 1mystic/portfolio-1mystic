@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Wavy Particles Background</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #f5f2e822;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .wavy-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            opacity: 0.6;
+            z-index: 2;
+            pointer-events: none;
+            will-change: transform, opacity;
+            top: 0;
+            left: 0;
+        }
+
+        .wave-particle {
+            width: 16px;
+            height: 8px;
+            background: linear-gradient(90deg, transparent, #3d2914, transparent);
+            border-radius: 1px;
+            box-shadow: 0 0 2px rgba(61, 41, 20, 0.3);
+            opacity: 0.8;
+            animation: waveFloat var(--duration) infinite ease-in-out;
+            animation-delay: var(--delay);
+        }
+
+        .dot-particle {
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #1d4a2a, #4f3820);
+            border-radius: 50%;
+            box-shadow: 0 0 3px rgba(61, 41, 20, 0.2);
+            opacity: 0.5;
+            animation: dotFloat var(--duration) infinite ease-in-out;
+            animation-delay: var(--delay);
+        }
+
+        .line-particle {
+            width: 5px;
+            height: 12px;
+            background: linear-gradient(180deg, transparent, #3d2914, transparent);
+            opacity: 0.7;
+            animation: lineFloat var(--duration) infinite ease-in-out;
+            animation-delay: var(--delay);
+        }
+
+        .curve-particle {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #3d2914;
+            border-radius: 50%;
+            border-top: transparent;
+            border-right: transparent;
+            opacity: 0.8;
+            animation: curveFloat var(--duration) infinite ease-in-out;
+            animation-delay: var(--delay);
+        }
+
+        /* Grainy jungle particles - always visible */
+        .grain-particle {
+            width: 10px;
+            height: 10px;
+            background: #4a3319;
+            opacity: 0.8;
+            animation: grainFloat var(--duration) infinite linear;
+            animation-delay: var(--delay);
+            box-shadow: 0 0 1px rgba(74, 51, 25, 0.8);
+        }
+
+        .wild-speck {
+            width: 8px;
+            height:43px;
+            background: #5a4028;
+            opacity: 0.9;
+            border-radius: 1px;
+            animation: wildFloat var(--duration) infinite ease-in-out;
+            animation-delay: var(--delay);
+        }
+
+        .jungle-dust {
+            width: 5.5px;
+            height: 5.5px;
+            background: radial-gradient(circle, #3d2914, transparent);
+            opacity: 0.8;
+            border-radius: 50%;
+            animation: dustFloat var(--duration) infinite linear;
+            animation-delay: var(--delay);
+        }
+
+        .organic-bit {
+            width: 5px;
+            height: 5px;
+            background: #2d1f0f;
+            opacity: 0.9;
+            border-radius: 30% 70% 40% 60%;
+            animation: organicFloat var(--duration) infinite ease-in-out;
+            animation-delay: var(--delay);
+            box-shadow: 0 0 2px rgba(45, 31, 15, 0.4);
+        }
+
+        @keyframes waveFloat {
+            0% {
+                transform: translateY(-50px) translateX(0) rotate(0deg) scaleX(1);
+                opacity: 0.8;
+            }
+            5% {
+                opacity: 0.9;
+            }
+            25% {
+                transform: translateY(25vh) translateX(var(--wave-1)) rotate(180deg) scaleX(0.8);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(50vh) translateX(var(--wave-2)) rotate(360deg) scaleX(1.2);
+                opacity: 0.7;
+            }
+            75% {
+                transform: translateY(75vh) translateX(var(--wave-3)) rotate(540deg) scaleX(0.6);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(100vh) translateX(var(--wave-4)) rotate(720deg) scaleX(0.4);
+                opacity: 0.4;
+            }
+        }
+
+        @keyframes dotFloat {
+            0% {
+                transform: translateY(-30px) translateX(0) scale(1);
+                opacity: 0.9;
+            }
+            10% {
+                opacity: 1;
+            }
+            30% {
+                transform: translateY(30vh) translateX(var(--drift-1)) scale(0.8);
+                opacity: 0.8;
+            }
+            60% {
+                transform: translateY(60vh) translateX(var(--drift-2)) scale(1.1);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh) translateX(var(--drift-3)) scale(0.6);
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes lineFloat {
+            0% {
+                transform: translateY(-40px) translateX(0) rotate(0deg);
+                opacity: 0.7;
+            }
+            8% {
+                opacity: 0.8;
+            }
+            20% {
+                transform: translateY(20vh) translateX(var(--sway-1)) rotate(45deg);
+                opacity: 0.7;
+            }
+            40% {
+                transform: translateY(40vh) translateX(var(--sway-2)) rotate(-30deg);
+                opacity: 0.6;
+            }
+            60% {
+                transform: translateY(60vh) translateX(var(--sway-3)) rotate(60deg);
+                opacity: 0.5;
+            }
+            80% {
+                transform: translateY(80vh) translateX(var(--sway-4)) rotate(-45deg);
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(100vh) translateX(var(--sway-5)) rotate(90deg);
+                opacity: 0.3;
+            }
+        }
+
+        @keyframes curveFloat {
+            0% {
+                transform: translateY(-35px) translateX(0) rotate(0deg) scale(1);
+                opacity: 0.8;
+            }
+            12% {
+                opacity: 0.9;
+            }
+            35% {
+                transform: translateY(35vh) translateX(var(--curve-1)) rotate(90deg) scale(0.9);
+                opacity: 0.7;
+            }
+            65% {
+                transform: translateY(65vh) translateX(var(--curve-2)) rotate(180deg) scale(1.1);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(100vh) translateX(var(--curve-3)) rotate(270deg) scale(0.5);
+                opacity: 0.4;
+            }
+        }
+
+        /* Grainy jungle particle animations - always visible */
+        @keyframes grainFloat {
+            0% {
+                transform: translateY(-20px) translateX(0) rotate(0deg);
+                opacity: 0.8;
+            }
+            10% {
+                opacity: 0.9;
+            }
+            20% {
+                transform: translateY(20vh) translateX(var(--grain-1)) rotate(45deg);
+                opacity: 0.8;
+            }
+            40% {
+                transform: translateY(40vh) translateX(var(--grain-2)) rotate(-30deg);
+                opacity: 0.8;
+            }
+            60% {
+                transform: translateY(60vh) translateX(var(--grain-3)) rotate(60deg);
+                opacity: 0.8;
+            }
+            80% {
+                transform: translateY(80vh) translateX(var(--grain-4)) rotate(-45deg);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh) translateX(var(--grain-5)) rotate(90deg);
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes wildFloat {
+            0% {
+                transform: translateY(-30px) translateX(0) scaleX(1) scaleY(1);
+                opacity: 0.9;
+            }
+            15% {
+                opacity: 1;
+            }
+            25% {
+                transform: translateY(25vh) translateX(var(--wild-1)) scaleX(1.5) scaleY(0.8);
+                opacity: 0.9;
+            }
+            50% {
+                transform: translateY(50vh) translateX(var(--wild-2)) scaleX(0.8) scaleY(1.2);
+                opacity: 0.8;
+            }
+            75% {
+                transform: translateY(75vh) translateX(var(--wild-3)) scaleX(1.2) scaleY(0.9);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) translateX(var(--wild-4)) scaleX(1) scaleY(1);
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes dustFloat {
+            0% {
+                transform: translateY(-25px) translateX(0) scale(0.8);
+                opacity: 0.8;
+            }
+            12% {
+                opacity: 0.9;
+            }
+            30% {
+                transform: translateY(30vh) translateX(var(--dust-1)) scale(1);
+                opacity: 0.8;
+            }
+            55% {
+                transform: translateY(55vh) translateX(var(--dust-2)) scale(0.8);
+                opacity: 0.7;
+            }
+            80% {
+                transform: translateY(80vh) translateX(var(--dust-3)) scale(1.1);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh) translateX(var(--dust-4)) scale(0.6);
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes organicFloat {
+            0% {
+                transform: translateY(-40px) translateX(0) rotate(0deg) scale(0.9);
+                opacity: 0.9;
+            }
+            18% {
+                opacity: 1;
+            }
+            35% {
+                transform: translateY(35vh) translateX(var(--organic-1)) rotate(120deg) scale(1.1);
+                opacity: 0.9;
+            }
+            65% {
+                transform: translateY(65vh) translateX(var(--organic-2)) rotate(-90deg) scale(0.9);
+                opacity: 0.8;
+            }
+            85% {
+                transform: translateY(85vh) translateX(var(--organic-3)) rotate(180deg) scale(1.2);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) translateX(var(--organic-4)) rotate(270deg) scale(0.7);
+                opacity: 0.7;
+            }
+        }
+
+        /* Demo content styling */
+        .demo-content {
+            position: relative;
+            z-index: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #3d2914;
+            text-align: center;
+            padding: 3rem 2rem;
+            background: #f5f2e855;
+        }
+
+        .demo-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            text-shadow: 1px 1px 2px rgba(61, 41, 20, 0.1);
+        }
+
+        .demo-content p {
+            font-size: 1.1rem;
+            max-width: 650px;
+            line-height: 1.7;
+            opacity: 0.8;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .demo-content .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.7;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .demo-content h1 {
+                font-size: 2.5rem;
+            }
+            .demo-content p {
+                font-size: 1rem;
+            }
+            .demo-content .subtitle {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .demo-content h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wavy-particles" id="wavyParticles"></div>
+    
+    <!-- Demo content - remove this section when integrating -->
+    <div class="demo-content">
+        <h1>Professional Excellence</h1>
+        <div class="subtitle">Sophisticated Design in Motion</div>
+        <p>Experience the perfect balance of elegance and innovation. Our professional-grade wavy particle system creates a refined atmospheric effect that enhances your content without overwhelming it.</p>
+    </div>
+
+    <script>
+        class WavyParticles {
+            constructor(container) {
+                this.container = container;
+                this.particles = [];
+                this.particleTypes = [
+                    { class: 'wave-particle', weight: 4 },
+                    { class: 'dot-particle', weight: 3 },
+                    { class: 'line-particle', weight: 2 },
+                    { class: 'curve-particle', weight: 1 }
+                ];
+                this.isActive = true;
+                this.init();
+            }
+
+            init() {
+                this.createParticles();
+                this.handleVisibilityChange();
+            }
+
+            getRandomParticleType() {
+                const totalWeight = this.particleTypes.reduce((sum, type) => sum + type.weight, 0);
+                let random = Math.random() * totalWeight;
+                
+                for (const type of this.particleTypes) {
+                    random -= type.weight;
+                    if (random <= 0) return type.class;
+                }
+                return this.particleTypes[0].class;
+            }
+
+            createParticles() {
+                if (!this.isActive) return;
+
+                const baseCount = Math.floor(window.innerWidth / 25);
+                const particleCount = Math.min(120, Math.max(40, baseCount));
+                
+                for (let i = 0; i < particleCount; i++) {
+                    setTimeout(() => {
+                        if (this.isActive) {
+                            this.createParticle();
+                        }
+                    }, i * 80 + Math.random() * 200);
+                }
+            }
+
+            createParticle() {
+                if (!this.isActive) return;
+
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const particleType = this.getRandomParticleType();
+                const typeElement = document.createElement('div');
+                typeElement.className = particleType;
+                particle.appendChild(typeElement);
+
+                // Position
+                const startX = Math.random() * window.innerWidth;
+                particle.style.left = startX + 'px';
+
+                // Animation duration
+                const duration = 12 + Math.random() * 8;
+                particle.style.setProperty('--duration', duration + 's');
+
+                // Delay
+                const delay = Math.random() * 3;
+                particle.style.setProperty('--delay', delay + 's');
+
+                // Wave movement variables
+                this.setWaveVariables(particle);
+
+                // Set grainy particle variables
+                this.setGrainyVariables(particle);
+
+                this.container.appendChild(particle);
+
+                // Cleanup
+                setTimeout(() => {
+                    if (particle.parentNode && this.isActive) {
+                        particle.parentNode.removeChild(particle);
+                        this.createParticle();
+                    }
+                }, (duration + delay + 2) * 1000);
+            }
+
+            setWaveVariables(particle) {
+                const amplitude = 80 + Math.random() * 40;
+                const frequency = 0.8 + Math.random() * 0.4;
+                
+                // Wave pattern variables
+                particle.style.setProperty('--wave-1', (Math.sin(frequency * 1) * amplitude) + 'px');
+                particle.style.setProperty('--wave-2', (Math.sin(frequency * 2) * amplitude * 0.8) + 'px');
+                particle.style.setProperty('--wave-3', (Math.sin(frequency * 3) * amplitude * 0.6) + 'px');
+                particle.style.setProperty('--wave-4', (Math.sin(frequency * 4) * amplitude * 0.4) + 'px');
+
+                // Drift variables
+                const drift = 60 + Math.random() * 40;
+                particle.style.setProperty('--drift-1', (Math.random() - 0.5) * drift + 'px');
+                particle.style.setProperty('--drift-2', (Math.random() - 0.5) * drift * 0.8 + 'px');
+                particle.style.setProperty('--drift-3', (Math.random() - 0.5) * drift * 0.6 + 'px');
+
+                // Sway variables
+                const sway = 30 + Math.random() * 20;
+                particle.style.setProperty('--sway-1', (Math.random() - 0.5) * sway + 'px');
+                particle.style.setProperty('--sway-2', (Math.random() - 0.5) * sway * 1.2 + 'px');
+                particle.style.setProperty('--sway-3', (Math.random() - 0.5) * sway * 0.8 + 'px');
+                particle.style.setProperty('--sway-4', (Math.random() - 0.5) * sway * 1.1 + 'px');
+                particle.style.setProperty('--sway-5', (Math.random() - 0.5) * sway * 0.9 + 'px');
+
+                // Curve variables
+                const curve = 50 + Math.random() * 30;
+                particle.style.setProperty('--curve-1', (Math.random() - 0.5) * curve + 'px');
+                particle.style.setProperty('--curve-2', (Math.random() - 0.5) * curve * 0.7 + 'px');
+                particle.style.setProperty('--curve-3', (Math.random() - 0.5) * curve * 1.3 + 'px');
+            }
+
+            setGrainyVariables(particle) {
+                // Grain movement variables
+                const grainMove = 15 + Math.random() * 10;
+                particle.style.setProperty('--grain-1', (Math.random() - 0.5) * grainMove + 'px');
+                particle.style.setProperty('--grain-2', (Math.random() - 0.5) * grainMove * 1.2 + 'px');
+                particle.style.setProperty('--grain-3', (Math.random() - 0.5) * grainMove * 0.8 + 'px');
+                particle.style.setProperty('--grain-4', (Math.random() - 0.5) * grainMove * 1.1 + 'px');
+                particle.style.setProperty('--grain-5', (Math.random() - 0.5) * grainMove * 0.9 + 'px');
+
+                // Wild speck variables
+                const wildMove = 25 + Math.random() * 15;
+                particle.style.setProperty('--wild-1', (Math.random() - 0.5) * wildMove + 'px');
+                particle.style.setProperty('--wild-2', (Math.random() - 0.5) * wildMove * 0.7 + 'px');
+                particle.style.setProperty('--wild-3', (Math.random() - 0.5) * wildMove * 1.3 + 'px');
+                particle.style.setProperty('--wild-4', (Math.random() - 0.5) * wildMove * 1.1 + 'px');
+
+                // Dust variables
+                const dustMove = 20 + Math.random() * 12;
+                particle.style.setProperty('--dust-1', (Math.random() - 0.5) * dustMove + 'px');
+                particle.style.setProperty('--dust-2', (Math.random() - 0.5) * dustMove * 0.9 + 'px');
+                particle.style.setProperty('--dust-3', (Math.random() - 0.5) * dustMove * 1.2 + 'px');
+                particle.style.setProperty('--dust-4', (Math.random() - 0.5) * dustMove * 0.8 + 'px');
+
+                // Organic bit variables
+                const organicMove = 35 + Math.random() * 20;
+                particle.style.setProperty('--organic-1', (Math.random() - 0.5) * organicMove + 'px');
+                particle.style.setProperty('--organic-2', (Math.random() - 0.5) * organicMove * 0.6 + 'px');
+                particle.style.setProperty('--organic-3', (Math.random() - 0.5) * organicMove * 1.4 + 'px');
+                particle.style.setProperty('--organic-4', (Math.random() - 0.5) * organicMove * 1.0 + 'px');
+            }
+
+            handleVisibilityChange() {
+                document.addEventListener('visibilitychange', () => {
+                    if (document.hidden) {
+                        this.isActive = false;
+                    } else {
+                        this.isActive = true;
+                        // Restart if needed
+                        if (this.container.children.length < 20) {
+                            this.createParticles();
+                        }
+                    }
+                });
+            }
+
+            destroy() {
+                this.isActive = false;
+                this.container.innerHTML = '';
+            }
+        }
+
+        // Initialize the particle system
+        let particleSystem;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('wavyParticles');
+            particleSystem = new WavyParticles(container);
+        });
+
+        // Handle window resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                if (particleSystem) {
+                    particleSystem.destroy();
+                    const container = document.getElementById('wavyParticles');
+                    particleSystem = new WavyParticles(container);
+                }
+            }, 300);
+        });
+
+        // Performance optimization - pause when not visible
+        document.addEventListener('visibilitychange', () => {
+            if (particleSystem) {
+                // Handled within the class
+            }
+        });
+    </script>
+</body>
+</html>

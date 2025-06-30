@@ -6,13 +6,19 @@
     <title>Atharv Khare - Data Scientist</title>
     <link rel="stylesheet" href="styles.css">
 
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Devicon CDN for tech-specific icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
+
     <link rel="icon" type="image/jpeg" href="bg_images/yoda.jpg">
     <link rel="apple-touch-icon" href="bg_images/yoda.jpg">
 
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Mitr:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Rubik&family=Mitr&family=Sevillana&family=Lobster&family=Rubik+Bubbles&family=Rubik+Dirt&family=Lexend&family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&family=Courier+Prime&family=Iceland&family=Mitr&family=Sevillana&family=Lobster&family=Rubik+Bubbles&family=Rubik+Dirt&family=Lexend&family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     
 
@@ -25,9 +31,9 @@
 
 </head>
 <body>
-    <audio id="bg-music" autoplay loop>
-        <source src="bgsong.mp3" type="audio/mpeg">
 
+    <audio id="bg-music" style="display : none" controls autoplay loop>
+        <source src="bgsong.mp3" type="audio/mpeg">
     </audio>
       
     <!-- Loader -->
@@ -193,13 +199,22 @@
             
         </div>
     </nav>
+    <script>
+  window.addEventListener('DOMContentLoaded', function () {
+    const nav = document.querySelector('.nav-container');
+
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 10) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+  });
+</script>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-background">
-            <div class="grid-pattern"></div>
-            <div class="floating-particles"></div>
-        </div>
+    <section id="home" class="hero">       
         <div class="jungle-elements">
             <div class="jungle-element gplant">
                 <img src="bg_images/gplant.png" alt="jungle-element">
@@ -220,58 +235,190 @@
             </div>
         </div>  
         <div class="hero-content">
-            <div class="hero-text">
+
+            <div class="hero-left">           
                 <h1 class="hero-title">
-                    <span class="title-name strip-text"> Atharv Khare</span>
-                    <span class="title-line accent">DATA</span>
-                    <span class="title-line accent strip-text">SCIENTIST</span>
-                </h1>
-                <p class="hero-description">
-                    Transforming complex data into actionable insights through machine learning, 
-                    statistical analysis, and data visualization. Passionate about solving real-world 
-                    problems with data-driven solutions.
-                </p>
+                    <span class="title-name strip-text name-1"> ATHARV</span>
+                    <span class="title-name strip-text name-2"> KHARE</span>
+                </h1>                
+                    <span class="title-line strip-text accent">DATA SCIENTIST</span>
+                    <span class="title-line accent darktext "></span>                
+                
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">View My Work</a>
-                    <button class="btn btn-secondary">Download CV</button>
+                    <a href="Atharv Khare.pdf" class="btn btn-secondary" download>Download CV</a>
                 </div>
+                
             </div>
+
+                <div class="hero-visuals">
+                    <div class="profile-card">
+                        <!-- Left Column: Image + Social Links -->
+                        <div class="profile-left">
+                            <img src="bg_images/my-img .webp" alt="Atharv Khare" class="profile-pic">
+                            
+                            <div class="profile-divider"></div>
+                            
+                            <div class="social-links">
+                                <a href="https://linkedin.com/in/atharvkhare/" class="social-link" aria-label="LinkedIn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                                        <circle cx="4" cy="4" r="2"/>
+                                    </svg>
+                                </a>
+
+                                <a href="https://github.com/1mystic" class="social-link" aria-label="GitHub">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                                    </svg>
+                                </a>
+                                
+                                <a href="https://www.hackerrank.com/1mystic" class="social-link" aria-label="Hackerrank">
+                                    <img src="icons/hk1.png" alt="Hackerrank Logo" 
+                                    style="width: 35px; height: 35px; object-fit: cover;
+                                        opacity: 0.77;"                                    
+                                    class="hackerrank-logo">
+                                </a>
+                                
+                                <a href="https://leetcode.com/1mystic" class="social-link" aria-label="LeetCode">
+                                <svg  xmlns="http://www.w3.org/2000/svg"  width="34"  height="34"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-leetcode"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 13h7.5" /><path d="M9.424 7.268l4.999 -4.999" /><path d="M16.633 16.644l-2.402 2.415a3.189 3.189 0 0 1 -4.524 0l-3.77 -3.787a3.223 3.223 0 0 1 0 -4.544l3.77 -3.787a3.189 3.189 0 0 1 4.524 0l2.302 2.313" /></svg>
+                                
+                                </a>
+
+
+                                <a href="https://t.me/1mystic4u" class="social-link" aria-label="Telegram">
+                                <svg 
+                                    xmlns="http://www.w3.org/2000/svg" 
+                                    width="24" 
+                                    height="24" 
+                                    viewBox="0 0 24 24" 
+                                    fill="none" 
+                                    stroke="currentColor" 
+                                    stroke-width="2" 
+                                    stroke-linecap="round" 
+                                    stroke-linejoin="round">
+                                    <path d="m15 10-4 4 6 6 4-16-18 7 4 2 2 6 3-4"/>
+                                </svg>
+                                </a>
+
+                                
+                                <a href="mailto:atharvkhare18@gmail.com" class="social-link" aria-label="Email">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    </svg>
+                                </a>
+                                
+                                
+                            </div>
+                        </div>
+                        
+                        <!-- Right Column: Tech Stack -->
+                        <div class="profile-right">
+                            <h3 class="tech-stack-title">Tech Stack</h3>
+                            
+                            <div class="tech-stack-mini">
+
+                            <div class="tech-icon-mini">
+                                <i class="devicon-python-plain"></i>
+                                <div class="name">Python</div>
+                            </div>
+
+                            <div class="tech-icon-mini">
+                                <i class="devicon-java-plain "></i>
+                                <div class="name">Java</div>
+                            </div>
+
+                            <div class="tech-icon-mini">
+                                <i class="devicon-html5-plain "></i>
+                                <div class="name">HTML</div>
+                            </div>
+
+                            <div class="tech-icon-mini">
+                                <i class="devicon-css3-plain"></i>
+                                <div class="name">CSS</div>
+                            </div>
+
+                            <div class="tech-icon-mini">
+                                <i class="devicon-javascript-plain "></i>
+                                <div class="name">JavaScript</div>
+                            </div>
+
+                            <div class="tech-icon-mini">
+                                <i class="fa-solid fa-plug"></i>
+                                <div class="name">API</div>
+                            </div>
+
+                            <div class="tech-icon-mini">
+                                <i class="devicon-flask-original"></i>
+                                <div class="name">Flask</div>
+                            </div>
+
+                            <div class="tech-icon-mini">
+                                <i class="devicon-react-original"></i>
+                                <div class="name">React</div>
+                            </div>
+
+                            <div class="tech-icon-mini">
+                                <i class="devicon-nextjs-line"></i>
+                                <div class="name">Next.js</div>
+                            </div>
+
+                            <div class="tech-icon-mini">
+                                <i class="fa-solid fa-fan"></i>
+                                <div class="name">Celery</div>
+                            </div>
+
+                            <div class="tech-icon-mini">
+                                <i class="devicon-redis-plain "></i>
+                                <div class="name">Redis</div>
+                            </div>
+
+                            <div class="tech-icon-mini">
+                                <i class="devicon-mysql-plain "></i>
+                                <div class="name">MySQL</div>
+                            </div>
+
+                            <div class="tech-icon-mini">
+                                <i class="devicon-postgresql-plain "></i>
+                                <div class="name">PostgreSQL</div>
+                            </div>
+
+                            <div class="tech-icon-mini">
+                                <i class="fa-solid fa-file-word"></i>
+                                <div class="name">MS Office</div>
+                            </div>
+
+                            <div class="tech-icon-mini">
+                                    <i class="fas fa-palette"></i>
+
+                                <div class="name">Canva</div>
+                            </div>
+
+                            <div class="tech-icon-mini">
+                                <i class="devicon-pandas-plain "></i>
+                                <div class="name">Pandas</div>
+                            </div>
+
+                            <div class="tech-icon-mini">
+                                <i class="devicon-numpy-plain "></i>
+                                <div class="name">NumPy</div>
+                            </div>
+
+                            <div class="tech-icon-mini">
+                                <i class="fa-solid fa-chart-line"></i>
+                                <div class="name">Matplotlib</div>
+                            </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>       
            
-            <div class="hero-visual">
-                <div class="my-image">
-                    <img src="bg_images/my-img .webp" alt="my-image">
-                </div>
-                <div class="data-visualization">
-                    <div class="chart-container">
-                        <div class="bar-chart">
-                            <div class="bar" style="--height: 60%"></div>
-                            <div class="bar" style="--height: 80%"></div>
-                            <div class="bar" style="--height: 45%"></div>
-                            <div class="bar" style="--height: 90%"></div>
-                            <div class="bar" style="--height: 70%"></div>
-                        </div>
-                        <div class="chart-labels">
-                            <span>ML</span>
-                            <span>Stats</span>
-                            <span>Viz</span>
-                            <span>Python</span>
-                            <span>R</span>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="code-snippet">
-                    <div class="code-line">
-                        <span class="code-keyword">import</span>
-                        <span class="code-text">pandas as pd</span>
-                    </div>
-                    <div class="code-line">
-                        <span class="code-keyword">from</span>
-                        <span class="code-text">sklearn import</span>
-                    </div>
-                </div>
-            </div>
         </div>
+
+        
+
         <div class="scroll-indicator">
             <div class="scroll-arrow"></div>
         </div>
@@ -286,28 +433,28 @@
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <h3>Senior Data Scientist</h3>
-                        <p class="company">TechCorp Inc.</p>
-                        <p class="duration">2022 - Present</p>
-                        <p class="description">Leading ML initiatives, developing predictive models that increased revenue by 25%</p>
+                        <h3>Volunteer</h3>
+                        <p class="company">Paradox</p>
+                        <p class="duration">Dec 2024 - Jan 2025</p>
+                        <p class="description">Successfully organized and conducted a college fest event</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <h3>Data Scientist</h3>
-                        <p class="company">DataFlow Solutions</p>
-                        <p class="duration">2020 - 2022</p>
-                        <p class="description">Built recommendation systems and automated data pipelines</p>
+                        <h3>Data Science trainee</h3>
+                        <p class="company">YBI Foundation</p>
+                        <p class="duration">2024</p>
+                        <p class="description">Conducted in-depth analysis of real-world news datasets to evaluate public sentiment and response to major news media outlets, leveraging advanced data science techniques for actionable insights.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <h3>Junior Data Analyst</h3>
-                        <p class="company">StartupXYZ</p>
-                        <p class="duration">2019 - 2020</p>
-                        <p class="description">Performed statistical analysis and created data visualizations</p>
+                        <h3>JS Intern</h3>
+                        <p class="company">EY Systems</p>
+                        <p class="duration">2023</p>
+                        <p class="description">Performed statistical analysis and created data visualizations. Also assisted in development of a website for a client.</p>
                     </div>
                 </div>
             </div>
@@ -320,53 +467,50 @@
             <h2 class="section-title">Featured Projects</h2>
             <div class="featured-grid">
                 <div class="featured-card">
-                    <div class="card-image">
-                        <div class="project-preview">
-                            <div class="code-lines">
-                                <div class="code-line"></div>
-                                <div class="code-line short"></div>
-                                <div class="code-line"></div>
-                                <div class="code-line medium"></div>
-                            </div>
-                        </div>
+                    <div class="card-image">                  
+                            
+                                <img src="proj-img/clearv.png" alt="Project Preview">
+                            
+                       
                     </div>
                     <div class="card-content">
-                        <h3>AI-Powered Sentiment Analysis</h3>
-                        <p>Deep learning model for real-time sentiment analysis of social media data with 94% accuracy.</p>
+                        <h3>Clearview: ML-Verified Pollution Reporting Map</h3>
+                        <p>Crowdsourced platform where users submit geotagged pollution reports, automatically verified by an ML model and displayed on an interactive live map.</p>
                         <div class="project-tags">
-                            <span class="tag">Deep Learning</span>
-                            <span class="tag">NLP</span>
+                            <span class="tag">Machine Learning</span>
+                            <span class="tag">Tensorflow</span>
                             <span class="tag">Python</span>
+                            <span class="tag">React</span>
+                            <span class="tag">Tailwind</span>
+                            <span class="tag">Leaflet API</span>
                         </div>
                         <div class="card-actions">
-                            <button class="btn-link">View Project</button>
-                            <button class="btn-link">GitHub</button>
+                            <a href="https://clearvieweco.netlify.app/" class="btn-link" target="_blank" rel="noopener">View Project</a>
+                            <a href="https://github.com/1mystic/ClearView" class="btn-link" target="_blank" rel="noopener">GitHub</a>
                         </div>
                     </div>
                 </div>
                 <div class="featured-card">
                     <div class="card-image">
-                        <div class="project-preview">
-                            <div class="chart-preview">
-                                <div class="mini-bars">
-                                    <div class="mini-bar"></div>
-                                    <div class="mini-bar"></div>
-                                    <div class="mini-bar"></div>
-                                </div>
-                            </div>
-                        </div>
+                        <img src="proj-img/whiz.png" alt="Project Preview">
                     </div>
                     <div class="card-content">
-                        <h3>Customer Churn Prediction</h3>
-                        <p>Machine learning pipeline that predicts customer churn with advanced feature engineering and model optimization.</p>
+                        <h3>Whiz-It: Full-Stack Quizzing Platform</h3>
+                        <p>A scalable, secure quizzing web app featuring real-time notifications, advanced authentication, email integration, and background task processing for seamless learning experiences.</p>
                         <div class="project-tags">
-                            <span class="tag">Machine Learning</span>
-                            <span class="tag">Scikit-learn</span>
                             <span class="tag">Flask</span>
+                            <span class="tag">Vue.Js</span>
+                            <span class="tag">Redis</span>
+                            <span class="tag">Celery</span>
+                            <span class="tag">JWT</span>
+                            <span class="tag">SMTP</span>
+                            <span class="tag">Websockets</span>
+
                         </div>
                         <div class="card-actions">
-                            <button class="btn-link">View Project</button>
-                            <button class="btn-link">GitHub</button>
+                            <a href="https://youtu.be/TfYUGgWR7j4?si=Wuo9-EpujTJwdGnv" class="btn-link" target="_blank" rel="noopener">View Project</a>
+                            <a href="https://github.com/1mystic/whiz.it" class="btn-link" target="_blank" rel="noopener">GitHub</a>
+                       
                         </div>
                     </div>
                 </div>
@@ -374,56 +518,191 @@
         </div>
     </section>
 
-    <section id="projects" class="all-projects section">
-        <div class="container">
-            <h2 class="section-title title-color-2">All Projects</h2>
-            <div class="project-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="ml">Machine Learning</button>
-                <button class="filter-btn" data-filter="viz">Visualization</button>
-                <button class="filter-btn" data-filter="web">Web Dev</button>
-                <button class="filter-btn" data-filter="analysis">Analysis</button>
-            </div>
-            <div class="projects-grid">
+    
+<section id="projects" class="all-projects section">
+    <div class="container">
+        <h2 class="section-title title-color-2">All Projects</h2>
+        <div class="project-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="ml">Machine Learning</button>
+            <button class="filter-btn" data-filter="viz">Visualization</button>
+            <button class="filter-btn" data-filter="web">Web Dev</button>
+            <button class="filter-btn" data-filter="analysis">Analysis</button>
+        </div>
+        <div class="projects-grid">
+            <div class="projects-inner">
+                <!-- GlitchFlick -->
+                <div class="project-card" data-category="ai">
+                    <div class="card-image">
+                        <img src="proj-img/glitch.png" alt="Project Preview">
+                    </div>
+                    <h3>GlitchFlick</h3>
+                    <p>GenAI-powered tool that creates customized video scripts for content creators in seconds.</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">OpenAI API</span>
+                        <span class="tag">Flask</span>
+                        <span class="tag">React</span>
+                    </div>
+                    <div class="card-overlay">
+                        <a href="https://github.com/1mystic/GlitchFlick" class="view-details" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Whiz-It -->
+                <div class="project-card active" data-category="web">
+                    <div class="card-image">
+                        <img src="proj-img/wix.png" alt="Project Preview">
+                    </div>
+                    <h3>Whixplore</h3>
+                    <p>Assesment on cultures from all continents, with badges, passport achievements, and a global leaderboard.</p>
+                    <div class="project-tags">
+                        <span class="tag">Django</span>
+                        <span class="tag">Celery</span>
+                        <span class="tag">Redis</span>
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">WebSockets</span>
+                    </div>
+                    <div class="card-overlay">
+                        <a href="https://github.com/1mystic/wixplore" class="view-details" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Clearview -->
                 <div class="project-card" data-category="ml">
-                    <h3>Predictive Maintenance System</h3>
-                    <p>IoT sensor data analysis for equipment failure prediction</p>
+                    <div class="card-image">
+                        <img src="proj-img/wix.png" alt="Project Preview">
+                    </div>
+                    <h3>Clearview: Pollution Reporting System</h3>
+                    <p>Geospatial platform with ML verification of user-submitted environmental reports on live map.</p>
                     <div class="project-tags">
                         <span class="tag">TensorFlow</span>
-                        <span class="tag">IoT</span>
-                        <span class="tag">Python</span>
+                        <span class="tag">PostGIS</span>
+                        <span class="tag">Flask</span>
+                        <span class="tag">Mapbox</span>
+                        <span class="tag">AWS</span>
+                    </div>
+                    <div class="card-overlay">
+       <a href="https://github.com/1mystic/glitchflick" class="view-details" target="_blank" rel="noopener">GitHub</a>
                     </div>
                 </div>
-                <div class="project-card" data-category="viz">
-                    <h3>COVID-19 Data Tracker</h3>
-                    <p>Interactive visualization of pandemic trends and statistics</p>
-                    <div class="project-tags">
-                        <span class="tag">D3.js</span>
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">Python</span>
-                    </div>
-                </div>
+
+                <!-- Qwizit -->
                 <div class="project-card" data-category="web">
-                    <h3>ML Model API</h3>
-                    <p>RESTful API for serving machine learning models at scale</p>
+                    <div class="card-image">
+                        <img src="proj-img/qwix.jpeg" alt="Project Preview">
+                    </div>
+                    <h3>Qwix.it: Home services</h3>
+                    <p>End-to-end service booking platform with payment processing and professional vetting.</p>
                     <div class="project-tags">
-                        <span class="tag">FastAPI</span>
-                        <span class="tag">Docker</span>
+                        <span class="tag">Js</span>
+                        <span class="tag">Flask</span>
+                        <span class="tag">Bootstrap</span>
                         <span class="tag">Python</span>
                     </div>
-                </div>
-                <div class="project-card" data-category="analysis">
-                    <h3>Market Research Analysis</h3>
-                    <p>Statistical analysis of consumer behavior and market trends</p>
-                    <div class="project-tags">
-                        <span class="tag">R</span>
-                        <span class="tag">Statistics</span>
-                        <span class="tag">Tableau</span>
+                    <div class="card-overlay">
+       <a href="https://github.com/1mystic/Qwix.it-app" class="view-details" target="_blank" rel="noopener">GitHub</a>
                     </div>
                 </div>
+
+                <!-- Brutalist Python -->
+                <div class="project-card" data-category="frontend">
+                    <div class="card-image">
+                        <img src="proj-img/pylearn.png" height="90" alt="Project Preview">
+                    </div>
+                    <h3>Brutalist Python: Learning Platform</h3>
+                    <p>Minimalist coding education site with interactive challenges and progress tracking.</p>
+                    <div class="project-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Typescript</span>
+                        <span class="tag">CSS Modules</span>
+                    </div>
+                    <div class="card-overlay">
+       <a href="https://github.com/1mystic/code-zen-learn" class="view-details" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+
+                <!-- EnviroDash -->
+                <div class="project-card" data-category="viz">
+                    <div class="card-image">
+                        <img src="proj-img/envi.png" alt="Project Preview">
+                    </div>
+                    <h3>AuraSphere: Real-time Eco Monitoring</h3>
+                    <p>Data visualization dashboard for tracking environmental metrics and pollution trends.</p>
+                    <div class="project-tags">
+                        <span class="tag">Next.js</span>
+                        <span class="tag">Chart.js</span>
+                        <span class="tag">Tailwind CSS</span>
+                        <span class="tag">REST API</span>
+                    </div>
+                    <div class="card-overlay">
+       <a href="https://github.com/1mystic/envimoniter" class="view-details" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+
+                <!-- MindfulSpace -->
+                <div class="project-card" data-category="frontend">
+                    <div class="card-image">
+                        <img src="proj-img/mind.png" alt="Project Preview">
+                    </div>
+                    <h3>Mindfluence</h3>
+                    <p>Platform for identifying cognitive biases and mental states using official psychological tests, with community features for shared growth and support.</p>
+                    <div class="project-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">SASS</span>
+                        <span class="tag">Progressive Web App</span>
+                    </div>
+                    <div class="card-overlay">
+       <a href="https://github.com/1mystic/MindRail" class="view-details" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+
+                <!-- SourceSpark -->
+                <div class="project-card" data-category="web">
+                    <div class="card-image">
+                        <img src="proj-img/src.png" alt="Project Preview">
+                    </div>
+                    <h3>SourceSpark: Open-Source Onboarding</h3>
+                    <p>Discovery platform connecting newcomers with OSS projects, mentors, and hackathons.</p>
+                    <div class="project-tags">
+                        <span class="tag">Django</span>
+                        <span class="tag">Scrapy</span>
+                        <span class="tag">React</span>
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">OAuth</span>
+                    </div>
+                    <div class="card-overlay">
+                               <a href="https://github.com/1mystic/SourceSpark" class="view-details" target="_blank" rel="noopener">GitHub</a>
+
+                    </div>
+                </div>
+
+                <!-- Statistical Analysis Project -->
+                <div class="project-card" data-category="analysis">
+                    <div class="card-image">
+                        <img src="proj-img/stat.png" alt="Project Preview">
+                    </div>
+                    <h3>Statistics</h3>
+                    <p>Comprehensive statistical analysis of diverse datasets using advanced methods to uncover key insights and trends.</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Pandas</span>
+                        <span class="tag">NumPy</span>
+                        <span class="tag">Matplotlib</span>
+                        <span class="tag">Hypothesis Testing</span>
+                    </div>
+                    <div class="card-overlay">
+                        <a href="https://sites.google.com/ds.study.iitm.ac.in/atharvkhare/courses/statistics-ii" class="view-details" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="projects-scroll-indicator">
+                Drag to explore projects
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
      
       <!-- Education & Certificates -->
@@ -433,37 +712,78 @@
                 <div class="education-section">
                     <h2 class="section-title simple-title">Education</h2>
                     <div class="education-item">
-                        <h3>M.S. Data Science</h3>
-                        <p class="institution">Stanford University</p>
-                        <p class="year">2019</p>
+                        <div class="edu-text">
+                        <h3>B.S. Data Science</h3>
+                        <p class="institution">IIT Madras</p>
+                        <p class="year">2027</p>
+                        </div>
+                        <div class="edu-icon">
+                            <p>8.93</p>
+                            <h5>CGPA</h5>
+                        </div>
                     </div>
                     <div class="education-item">
-                        <h3>B.S. Computer Science</h3>
-                        <p class="institution">UC Berkeley</p>
-                        <p class="year">2017</p>
+                        <div class="edu-text">
+                        <h3>Diploma Programming</h3>
+                        <p class="institution">IIT Madras</p>
+                        <p class="year">2025</p>
+                        </div>
+                        <div class="edu-icon">
+                            <p>9.44</p>
+                            <h5>CGPA</h5>
+                        </div>
                     </div>
                 </div>
                 <div class="certificates-section">
-                    <h2 class="section-title simple-title">Certificates</h2>
-                    <div class="cert-grid">
-                        <div class="cert-item">
-                            <div class="cert-icon">🏆</div>
-                            <p>AWS Certified ML Specialist</p>
-                        </div>
-                        <div class="cert-item">
-                            <div class="cert-icon">📜</div>
-                            <p>Google Cloud Professional</p>
-                        </div>
-                        <div class="cert-item">
-                            <div class="cert-icon">🎯</div>
-                            <p>TensorFlow Developer</p>
-                        </div>
-                        <div class="cert-item">
-                            <div class="cert-icon">⭐</div>
-                            <p>Tableau Desktop Specialist</p>
-                        </div>
-                    </div>
-                </div>
+                <h2 class="section-title simple-title">Certificates</h2>
+                <ul class="cert-interactive-grid">
+                    <li data-active="true">
+                        <article>
+                            <h3>HackerRank SQL</h3>
+                            <p>Intermediate sql</p>
+                            <div class="cert-icon"></div>
+                            <a href="https://www.hackerrank.com/certificates/d366117ff2b9"><span>View Certificate</span></a>
+                            <img src="cert/sql.png" alt="SQL Certificate" />
+                        </article>
+                    </li>
+                    <li data-active="true">
+                        <article>
+                            <h3>GCP Workshop</h3>
+                            <p>Hands-on workshop on Google Cloud Platform fundamentals and cloud services.</p>
+                            <div class="cert-icon"></div>
+                            <a href="https://drive.google.com/file/d/1QvVS0EJSL60TOnbs5ZFTpgE1jcJlfh-X/view?usp=sharing"><span>View Certificate</span></a>
+                            <img src="cert/GCP.png" alt="GCP Workshop Certificate" />
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <h3>Dynamic Programming Workshop</h3>
+                            <p>Intensive workshop covering dynamic programming concepts and problem solving.</p>
+                            <div class="cert-icon"></div>
+                            <a href="https://drive.google.com/file/d/1Ru0ShGa4jEx2j4BsGiIVRf2HTLWhJxtE/view?usp=sharing"><span>View Certificate</span></a>
+                            <img src="cert/DP.png" alt="Dynamic Programming Workshop Certificate" />
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <h3>Machine Learning Workshop</h3>
+                            <p>Workshop on machine learning algorithms, model building, and evaluation techniques.</p>
+                            <div class="cert-icon"></div>
+                            <a href="https://drive.google.com/file/d/1RWIVo5YHam_mqswe_A5NlX0VXH5TcLyX/view?usp=sharing"><span>View Certificate</span></a>
+                            <img src="cert/ML.png" alt="Machine Learning Workshop Certificate" />
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <h3>Python Programming</h3>
+                            <p>Python programming and application development.</p>
+                            <div class="cert-icon"></div>
+                            <a href="https://drive.google.com/file/d/192zatB1EimlnHuJyFu7vcGbvb4QMrDSa/view?usp=sharing"><span>View Certificate</span></a>
+                            <img src="cert/python.png" alt="Python Programming Certificate" />
+                        </article>
+                    </li>
+                </ul>
+            </div>
             </div>
         </div>
     </section>
@@ -473,22 +793,67 @@
         <div class="container">
             <h2 class="section-title">My Journey</h2>
             <div class="journey-content">
-                <div class="journey-text">
-                    <p>My path into data science began with a fascination for patterns hidden in everyday data. From analyzing sports statistics as a hobby to building enterprise-level ML systems, I've always been driven by the potential to uncover insights that drive meaningful change.</p>
-                    <p>Today, I specialize in bridging the gap between complex algorithms and business value, ensuring that data science initiatives translate into real-world impact.</p>
+                <div class="blog-slider-container">
+        <div class="blog-slider">
+            <div class="blog-slider__wrapper">
+                <div class="blog-slider__item active">
+                    <div class="blog-slider__img">
+                        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=800&q=80" alt="Dawn - New Beginnings">
+                    </div>
+                    <div class="blog-slider__content">
+                        <span class="blog-slider__code">2023</span>
+                        <div class="blog-slider__title">A Curious Beginning</div>
+                        <div class="blog-slider__text">Graduated high school as a data enthusiast, deeply fascinated by art, mysticism, psychology, philosophy, and history. My journey began with a passion for exploring how these fields intersect with technology.</div>
+                        <a href="https://sites.google.com/view/lucidific1/" class="blog-slider__button" target="_blank" rel="noopener">READ MORE</a>
+                    </div>
                 </div>
+                
+                <div class="blog-slider__item">
+                    <div class="blog-slider__img">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="Web Development">
+                    </div>
+                    <div class="blog-slider__content">
+                        <span class="blog-slider__code">2024</span>
+                        <div class="blog-slider__title">Web Development Foundations</div>
+                        <div class="blog-slider__text">Ventured into web development, learning HTML, CSS, and JavaScript. Built my first interactive websites, blending creativity with code and laying the groundwork for future data-driven projects.</div>
+                        <a href="" class="blog-slider__button"></a>
+                    </div>
+                </div>
+                
+                <div class="blog-slider__item">
+                    <div class="blog-slider__img">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Data Science and ML">
+                    </div>
+                    <div class="blog-slider__content">
+                        <span class="blog-slider__code">2025</span>
+                        <div class="blog-slider__title">Diving Into Data Science</div>
+                        <div class="blog-slider__text">Embarked on the path of data science and machine learning. Started analyzing real-world datasets, building models, and uncovering insights—combining my curiosity with technical skills to solve meaningful problems.</div>
+                        <a href="#" class="blog-slider__button"></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="blog-slider__pagination">
+                <span class="pagination-bullet active" data-slide="0"></span>
+                <span class="pagination-bullet" data-slide="1"></span>
+                <span class="pagination-bullet" data-slide="2"></span>
+            </div>
+            
+            
+        </div>
+    </div>
                 <div class="journey-stats">
                     <div class="stat-item">
-                        <div class="stat-number">50+</div>
+                        <div class="stat-number">20+</div>
                         <div class="stat-label">Projects Completed</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-number">5+</div>
-                        <div class="stat-label">Years Experience</div>
+                        <div class="stat-label">Hackathon Finalist  </div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">25%</div>
-                        <div class="stat-label">Avg. ROI Increase</div>
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Certifications</div>
                     </div>
                 </div>
             </div>
@@ -500,36 +865,38 @@
         <div class="container">
             <h2 class="section-title title-color-2">Work & Blogs</h2>
             <div class="blogs-grid">
-                <article class="blog-card featured">
+                <a href="https://sites.google.com/view/lucidific1/explore/women-empowerment" class="blog-card featured" target="_blank" rel="noopener">
                     <div class="blog-image">
                         <div class="blog-category">Featured</div>
                     </div>
                     <div class="blog-content">
-                        <h3>The Future of Explainable AI in Healthcare</h3>
-                        <p>Exploring how interpretable machine learning models can improve trust and adoption in medical diagnosis applications.</p>
+                        <h3>Empowering Women: Do they need it in 2025 ?</h3>
+                        <p>Exploring how the concept of women empowerment has sometimes shifted toward pseudo-feminism in urban areas, while genuine empowerment is still lacking in regions where women truly need support and opportunities.</p>
                         <div class="blog-meta">
-                            <span class="blog-date">Dec 15, 2023</span>
-                            <span class="read-time">8 min read</span>
+                            <span class="blog-date">Mar 8, 2024</span>
+                            <span class="read-time">5 min read</span>
                         </div>
                     </div>
-                </article>
-                <article class="blog-card">
+                </a>
+                <a href="https://sites.google.com/view/lucidific1/explore/time" class="blog-card" target="_blank" rel="noopener">
                     <div class="blog-content">
-                        <h3>Building Production-Ready ML Pipelines</h3>
-                        <p>A comprehensive guide to deploying machine learning models with proper monitoring and maintenance.</p>
+                        <h3>Poem: The River of Time</h3>
+                        <p>A reflective poem exploring the relentless flow of time and the beauty found in each fleeting moment.</p>
                         <div class="blog-meta">
-                            <span class="blog-date">Nov 28, 2023</span>
-                            <span class="read-time">12 min read</span>
+                            <span class="blog-date">Feb 21, 2024</span>
+                            <span class="read-time">3 min read</span>
                         </div>
                     </div>
-                </article>
+                </a>
                 <article class="blog-card">
                     <div class="blog-content">
-                        <h3>Data Visualization Best Practices</h3>
-                        <p>Tips and techniques for creating compelling and effective data visualizations that tell a story.</p>
+                        <h3>Origami Folding Showcase: Art in Motion</h3>
+                        <p>A visual journey through intricate origami creations, with step-by-step highlights and creative inspiration.</p>
+                        <a href="https://www.instagram.com/1._.mystic" target="_blank" rel="noopener" class="blog-link">View on Instagram</a>
+
                         <div class="blog-meta">
-                            <span class="blog-date">Oct 22, 2023</span>
-                            <span class="read-time">6 min read</span>
+                            <span class="blog-date">Jan 12, 2024</span>
+                            <span class="read-time">5 min read</span>
                         </div>
                     </div>
                 </article>
@@ -546,27 +913,30 @@
                     <h3>Get in Touch</h3>
                     <p>I'm always interested in discussing new opportunities, collaborations, or just chatting about data science and technology.</p>
                     <div class="contact-methods">
-                        <div class="contact-method">
-                            <div class="contact-icon">📧</div>
-                            <div>
+                        <a href="mailto:atharvkhare18@gmail.com" class="contact-method">
+                            <div class="contact-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="34" height="34">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                        
                                 <h4>Email</h4>
-                                <p>atharvkhare18@email.com</p>
-                            </div>
-                        </div>
-                        <div class="contact-method">
-                            <div class="contact-icon">💼</div>
-                            <div>
-                                <h4>LinkedIn</h4>
-                                <p>linkedin.com/in/atharv-khare-a10456274/</p>
-                            </div>
-                        </div>
-                        <div class="contact-method">
-                            <div class="contact-icon">🐙</div>
-                            <div>
+                            
+                        </a>
+                        <a href="https://linkedin.com/in/atharvkhare/" class="contact-method" target="_blank" rel="noopener">
+                            <div class="contact-icon">In</div>
+                            <h4>LinkedIn</h4>
+                        </a>
+                        <a href="https://github.com/1mystic" class="contact-method">
+                            <div class="contact-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="34" height="34">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                                </svg>
+                            </div></svg>
+                            
                                 <h4>GitHub</h4>
-                                <p>github.com/1mystic</p>
-                            </div>
-                        </div>
+                            
+                        </a>
                     </div>
                 </div>
                 <form class="contact-form">
@@ -593,8 +963,8 @@
                     <p>&copy; 2024 Atharv Khare. All rights reserved.</p>
                 </div>
                 <div class="footer-links">
-                    <a href="#privacy">Privacy Policy</a>
-                    <a href="#terms">Terms of Service</a>
+                    <a href="#privacy">~1mystic</a>
+                    <a href="#terms"></a>
                 </div>
             </div>
         </div>

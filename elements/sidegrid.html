@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Portfolio Bento Grid</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 280px);
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #111111 100%);
+            border: 1px solid #2a2a2a;
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            border-color: #00d4aa;
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 212, 170, 0.1);
+        }
+
+        /* Grid Layout Sizes */
+        .about { grid-column: span 2; grid-row: span 1; }
+        .skills { grid-column: span 1; grid-row: span 2; }
+        .projects { grid-column: span 1; grid-row: span 1; }
+        .experience { grid-column: span 2; grid-row: span 1; }
+        .contact { grid-column: span 1; grid-row: span 1; }
+        .github { grid-column: span 1; grid-row: span 1; }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .icon {
+            width: 48px;
+            height: 48px;
+            background: #00d4aa;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .card-description {
+            color: #888888;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            font-size: 16px;
+            flex-grow: 1;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .features li {
+            color: #cccccc;
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 24px;
+            font-size: 14px;
+        }
+
+        .features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00d4aa;
+            font-weight: bold;
+        }
+
+        /* About Section */
+        .profile-section {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #00d4aa, #00b894);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .profile-info h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .profile-info p {
+            color: #888888;
+            font-size: 16px;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .skill-item {
+            background: #2a2a2a;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            transition: all 0.2s ease;
+            border: 1px solid #333333;
+        }
+
+        .skill-item:hover {
+            background: #333333;
+            border-color: #00d4aa;
+            transform: translateY(-2px);
+        }
+
+        .skill-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .skill-name {
+            font-size: 12px;
+            color: #cccccc;
+            font-weight: 500;
+        }
+
+        /* Projects Section */
+        .project-showcase {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .project-item {
+            background: #2a2a2a;
+            border-radius: 8px;
+            padding: 16px;
+            border: 1px solid #333333;
+            transition: all 0.2s ease;
+        }
+
+        .project-item:hover {
+            border-color: #00d4aa;
+            background: #333333;
+        }
+
+        .project-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .project-tech {
+            font-size: 12px;
+            color: #888888;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            margin-top: 16px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 32px;
+            margin-bottom: 24px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            background: #00d4aa;
+            border-radius: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% + 8px);
+            background: #333333;
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .timeline-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .timeline-company {
+            font-size: 14px;
+            color: #00d4aa;
+            margin-bottom: 4px;
+        }
+
+        .timeline-date {
+            font-size: 12px;
+            color: #888888;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .form-input {
+            background: #1a1a1a;
+            border: 1px solid #333333;
+            border-radius: 8px;
+            padding: 12px;
+            color: #ffffff;
+            font-size: 14px;
+        }
+
+        .form-input::placeholder {
+            color: #888888;
+        }
+
+        .form-button {
+            background: #00d4aa;
+            color: #000000;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .form-button:hover {
+            background: #00b894;
+        }
+
+        /* GitHub Stats */
+        .github-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: #2a2a2a;
+            border-radius: 8px;
+            border: 1px solid #333333;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #888888;
+        }
+
+        .stat-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #00d4aa;
+        }
+
+        .contribution-graph {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2px;
+            margin-top: 12px;
+        }
+
+        .contribution-day {
+            aspect-ratio: 1;
+            background: #2a2a2a;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .contribution-day.active {
+            background: #00d4aa;
+        }
+
+        .contribution-day.medium {
+            background: #00b894;
+        }
+
+        .contribution-day.low {
+            background: #007865;
+        }
+
+        .glow-effect {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            right: -50%;
+            bottom: -50%;
+            background: radial-gradient(circle, rgba(0, 212, 170, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover .glow-effect {
+            opacity: 1;
+        }
+
+        @media (max-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto;
+            }
+            
+            .about, .experience { grid-column: span 2; }
+            .skills, .projects, .contact, .github { grid-column: span 1; }
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+            
+            .card {
+                grid-column: span 1 !important;
+                grid-row: span 1 !important;
+            }
+            
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .skills-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="grid">
+            <!-- About Section -->
+            <div class="card about">
+                <div class="glow-effect"></div>
+                <div class="profile-section">
+                    <div class="profile-avatar">JS</div>
+                    <div class="profile-info">
+                        <h2>John Smith</h2>
+                        <p>Full Stack Developer & UI/UX Enthusiast</p>
+                    </div>
+                </div>
+                <p class="card-description">
+                    Passionate developer with 5+ years of experience building scalable web applications. 
+                    I love creating beautiful, functional user experiences and solving complex problems with clean code.
+                </p>
+            </div>
+
+            <!-- Skills Section -->
+            <div class="card skills">
+                <div class="glow-effect"></div>
+                <div class="card-header">
+                    <div class="icon">🛠️</div>
+                    <h3 class="card-title">Skills</h3>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <span class="skill-icon">⚛️</span>
+                        <div class="skill-name">React</div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-icon">🟢</span>
+                        <div class="skill-name">Node.js</div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-icon">🐍</span>
+                        <div class="skill-name">Python</div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-icon">🗄️</span>
+                        <div class="skill-name">MongoDB</div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-icon">☁️</span>
+                        <div class="skill-name">AWS</div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-icon">🎨</span>
+                        <div class="skill-name">Figma</div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-icon">🐳</span>
+                        <div class="skill-name">Docker</div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-icon">📱</span>
+                        <div class="skill-name">React Native</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Section -->
+            <div class="card projects">
+                <div class="glow-effect"></div>
+                <div class="card-header">
+                    <div class="icon">💻</div>
+                    <h3 class="card-title">Projects</h3>
+                </div>
+                <p class="card-description">
+                    Recent work showcasing my development skills and creativity.
+                </p>
+                <div class="project-showcase">
+                    <div class="project-item">
+                        <div class="project-title">E-Commerce Platform</div>
+                        <div class="project-tech">React, Node.js, Stripe</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">Task Management App</div>
+                        <div class="project-tech">Next.js, Prisma, PostgreSQL</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">Mobile Chat App</div>
+                        <div class="project-tech">React Native, Socket.io</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience Section -->
+            <div class="card experience">
+                <div class="glow-effect"></div>
+                <div class="card-header">
+                    <div class="icon">💼</div>
+                    <h3 class="card-title">Experience</h3>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-title">Senior Full Stack Developer</div>
+                        <div class="timeline-company">TechCorp Inc.</div>
+                        <div class="timeline-date">2022 - Present</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">Frontend Developer</div>
+                        <div class="timeline-company">StartupXYZ</div>
+                        <div class="timeline-date">2020 - 2022</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">Junior Developer</div>
+                        <div class="timeline-company">WebSolutions</div>
+                        <div class="timeline-date">2019 - 2020</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="card contact">
+                <div class="glow-effect"></div>
+                <div class="card-header">
+                    <div class="icon">📧</div>
+                    <h3 class="card-title">Contact</h3>
+                </div>
+                <p class="card-description">
+                    Let's work together on your next project.
+                </p>
+                <div class="contact-form">
+                    <input type="text" class="form-input" placeholder="Your Name">
+                    <input type="email" class="form-input" placeholder="your@email.com">
+                    <button class="form-button">Send Message</button>
+                </div>
+            </div>
+
+            <!-- GitHub Stats Section -->
+            <div class="card github">
+                <div class="glow-effect"></div>
+                <div class="card-header">
+                    <div class="icon">⭐</div>
+                    <h3 class="card-title">GitHub</h3>
+                </div>
+                <div class="github-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Repositories</span>
+                        <span class="stat-value">47</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Contributions</span>
+                        <span class="stat-value">1,234</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Stars</span>
+                        <span class="stat-value">156</span>
+                    </div>
+                </div>
+                <div class="contribution-graph">
+                    <div class="contribution-day low"></div>
+                    <div class="contribution-day active"></div>
+                    <div class="contribution-day medium"></div>
+                    <div class="contribution-day"></div>
+                    <div class="contribution-day active"></div>
+                    <div class="contribution-day low"></div>
+                    <div class="contribution-day medium"></div>
+                    <div class="contribution-day active"></div>
+                    <div class="contribution-day"></div>
+                    <div class="contribution-day low"></div>
+                    <div class="contribution-day medium"></div>
+                    <div class="contribution-day active"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add interactive hover effects
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Animate skill items
+        document.querySelectorAll('.skill-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-4px) scale(1.05)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Contact form interaction
+        document.querySelector('.form-button').addEventListener('click', function() {
+            this.textContent = 'Message Sent!';
+            this.style.background = '#00b894';
+            
+            setTimeout(() => {
+                this.textContent = 'Send Message';
+                this.style.background = '#00d4aa';
+            }, 2000);
+        });
+
+        // Animate contribution graph
+        function animateContributions() {
+            const days = document.querySelectorAll('.contribution-day');
+            const classes = ['', 'low', 'medium', 'active'];
+            
+            setInterval(() => {
+                days.forEach(day => {
+                    const randomClass = classes[Math.floor(Math.random() * classes.length)];
+                    day.className = `contribution-day ${randomClass}`;
+                });
+            }, 3000);
+        }
+
+        // Start animations
+        animateContributions();
+
+        // Add click interactions
+        document.querySelectorAll('.project-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const title = this.querySelector('.project-title').textContent;
+                console.log(`Clicked on project: ${title}`);
+                // Add your project navigation logic here
+            });
+        });
+
+        // Timeline hover effects
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateX(8px)';
+                this.style.background = 'rgba(0, 212, 170, 0.05)';
+                this.style.borderRadius = '8px';
+                this.style.padding = '12px 16px 12px 32px';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateX(0)';
+                this.style.background = 'transparent';
+                this.style.padding = '0 0 0 32px';
+            });
+        });
+    </script>
+</body>
+</html>
